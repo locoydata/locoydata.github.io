@@ -1,0 +1,12 @@
+{
+	"title": "$:/plugins/xp/cplgenerator",
+	"name": "CPLGenerator",
+	"description": "Generate plugin data for CPL",
+	"list": "readme",
+	"version": "0.0.1",
+	"core-version": ">=5.3.0",
+	"plugin-type": "plugin",
+	"dependents": "$:/plugins/xp/aggregation",
+	"type": "application/json",
+	"author": "kl"
+}

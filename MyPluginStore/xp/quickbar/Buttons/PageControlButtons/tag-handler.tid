@@ -1,0 +1,19 @@
+caption: {{$:/xp/ui/Buttons/tag-handler!!caption}}
+dependents: $:/plugins/xp/aggregation
+description: {{$:/xp/ui/Buttons/tag-handler!!description}}
+tags: $:/tags/QuickBar/PageControlButtons
+title: $:/xp/quickbar/Buttons/tag-handler
+
+\whitespace trim
+<$let stateTiddler="$:/state/tag-handler/multitasking" multitaskingState={{{ [<stateTiddler>!is[missing]get[text]] ~off }}}>
+<$list filter="[<multitaskingState>!match[on]]">
+<$button set=<<stateTiddler>> setTo="on" tooltip="Manage tags" class=<<tv-config-toolbar-class>> style="padding-bottom:7px;">
+{{$:/xp/images/tag}}
+</$button>
+</$list>
+<$list filter="[<multitaskingState>match[on]]">
+<$button set=<<stateTiddler>> setTo="off" tooltip="Exit tag handler" class="tc-btn-invisible quickbar-active-indicator" style="padding-bottom:7px;">
+{{$:/xp/images/tag}}
+</$button>
+</$list>
+</$let>

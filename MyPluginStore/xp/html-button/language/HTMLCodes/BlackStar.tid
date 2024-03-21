@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/BlackStar
+
+<$button tag="a" tooltip="Black star">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&#9733;"
+/>
+
+<span class="tc-html-chooser-text">★</span>
+
+</$button>

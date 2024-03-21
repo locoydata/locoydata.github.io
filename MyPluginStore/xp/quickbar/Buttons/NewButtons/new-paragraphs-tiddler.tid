@@ -1,0 +1,9 @@
+caption: {{$:/xp/ui/Buttons/new-paragraphs-tiddler!!description}}
+dependents: $:/plugins/xp/aggregation-paragraphs
+description: {{$:/xp/ui/Buttons/new-paragraphs-tiddler!!description}}
+tags: $:/tags/QuickBar/NewButtons
+title: $:/xp/quickbar/Buttons/new-paragraphs-tiddler
+
+<$list filter="[[$:/plugins/xp/aggregation-paragraphs]plugin-type[plugin]] :filter[{$:/config/Plugins/Disabled/$:/plugins/xp/aggregation-paragraphs}!match[yes]]" variable="ignore">
+{{$:/xp/ui/Buttons/new-paragraphs-tiddler}}
+</$list>

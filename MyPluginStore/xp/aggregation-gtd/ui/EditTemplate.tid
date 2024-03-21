@@ -1,0 +1,64 @@
+footer: <$let td-baseName={{{ [<currentItem>prefix[$:/]removeprefix[$:/]] ~[<currentItem>] }}} td-statusTiddler={{{ [<td-baseName>addprefix[$:/todolist/data/status/]] }}}><span class="tc-muted" style="float:left;text-align:left;padding:.5em 0 0 7px;font-size:.9em;"> Status: <$list filter="[<currentItem>!tag[done]]"><span style="color:#cc3333;">undone</span></$list><$list filter="[<td-statusTiddler>search:text[undone]]"><$list filter="[<currentItem>!tag[done]]"> / </$list><span style="color:#cc3333;">todolist</span></$list><$list filter="[<currentItem>tag[done]]"><$list filter="[<td-statusTiddler>!search:text[undone]]"><span style="color:#00a565;">completed</span></$list></$list></span><span class="py-todo-actions"><$button tooltip="Delete all information about this todo" class="py-btn"><span style="opacity:.8;">{{$:/core/images/delete-button}}</span><$action-confirm $message="Are you sure you wish to delete this todo?"><$action-deletetiddler $tiddler=<<currentItem>>/><$list filter="[<td-baseName>!is[blank]]" variable="ignore"><$action-deletetiddler $filter="[prefix[$:/todolist/data]suffix<td-baseName>]"/></$list><$action-sendmessage $message="tm-close-tiddler"/><$action-listops $tiddler=<<currentList>> $subfilter="+[remove<currentItem>]"/></$action-confirm></$button><$button tooltip="Confirm changes to this todo. ctrl-Enter" class="py-btn" style="margin:0 7px 0 5px;width:50px;">OK<$list filter="[<currentItem>get[caption]!match{$:/state/gtd/edit-caption}]"><$action-setfield $tiddler=<<currentItem>> $field="caption" $value={{$:/state/gtd/edit-caption}}/></$list><$action-sendmessage $message="tm-close-tiddler"/></$button></span></$let>
+title: $:/xp/aggregation-gtd/ui/EditTemplate
+
+\define gtd-add-todolist()
+\whitespace trim
+<$button class="tc-btn-invisible tc-btn-mini">
+<$list filter="[<td-statusTiddler>search:text[undone]] [<td-statusTiddler>search:text[done]] +[limit[1]]" emptyMessage="Add a todolist">
+Show todolist
+</$list>
+<$action-listops $tiddler=<<currentItem>> $tags="Todolist"/>
+</$button>
+\end
+
+\define preview-button()
+<$button tooltip={{$:/language/Buttons/Preview/Hint}} class="tc-btn-invisible tc-btn-mini">
+{{$:/core/ui/EditorToolbar/preview}}
+</$button>
+\end
+
+\define save-tiddler-actions()
+<!-- Save & Close -->
+<$action-setfield $tiddler=<<currentItem>> $field="caption" $value={{$:/state/gtd/edit-caption}}/>
+<$action-sendmessage $message="tm-auto-save-wiki"/>
+<$action-sendmessage $message="tm-close-tiddler"/>
+\end
+
+\whitespace trim
+
+<$let
+  editPreviewStateTiddler={{{ [{$:/config/ShowEditPreview/PerTiddler}!match[yes]then[$:/state/showeditpreview]] :else[<qualify "$:/state/showeditpreview">] }}}
+  currentItem={{$:/state/gtd/edit}}
+  td-baseName={{{ [<currentItem>prefix[$:/]removeprefix[$:/]] ~[<currentItem>] }}}
+  td-statusTiddler={{{ [<td-baseName>addprefix[$:/todolist/data/status/]] }}}
+  storyTiddler=<<currentItem>>
+  exclude="$:/xp/ui/EditorToolbar/annotate">
+<$tiddler tiddler=<<currentItem>>>
+<div data-tiddler-title=<<currentTiddler>> class="tc-tiddler-frame tc-tiddler-edit-frame tc-tiddler-exists tc-tiddler-system xp-gtd-editor">
+<$fieldmangler>
+<$keyboard key="((save-tiddler))" actions=<<save-tiddler-actions>> tag="div">
+
+<$edit-text
+  tiddler="$:/state/gtd/edit-caption"
+  class="tc-titlebar tc-edit-texteditor"
+  focus={{{ [{$:/config/AutoFocus}match[title]then[true]] ~[[false]] }}}
+  tabindex={{$:/config/EditTabIndex}}
+  cancelPopups="yes"
+  tag="input"
+/>
+<i class="tc-subtitle">
+<$view field="created" format="date" template="YYYY/0MM/0DD hh12:0mmam"/> &ensp;&gt;&ensp; <$view field="modified" format="date" template="YYYY/0MM/0DD hh12:0mmam"/>&emsp; <i style.float=right><<preview-button>></i>
+</i>
+
+<div class="xp-gtd-editor-body">
+{{||$:/xp/ui/EditTemplate/body/default}}
+</div>
+
+</$keyboard>
+</$fieldmangler>
+<$list filter="[<currentItem>tag[Todolist]]" emptyMessage=<<gtd-add-todolist>>>
+<<gtd-todolist-ui caption:"Todolist {{||$:/xp/images/pie-todolist}}">>
+</$list>
+</div>
+</$tiddler>
+</$let>

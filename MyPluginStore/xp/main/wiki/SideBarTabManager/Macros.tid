@@ -1,0 +1,5 @@
+caption: Macros
+code-body: yes
+title: $:/SideBarTabManager/Macros
+
+\define styleTitle() $:/config/TabLauncher/Style

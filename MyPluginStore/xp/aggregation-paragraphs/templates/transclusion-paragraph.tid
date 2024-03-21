@@ -1,0 +1,40 @@
+title: $:/templates/transclusion-paragraph
+
+\whitespace trim
+\define viewCodeState() $:/state/view-code/$(currentTiddler)$
+
+<div class="xp-aggregation-card">
+
+<h2>
+<$let tv-wikilinks="no">
+<$transclude field="caption"><$view field="title"/></$transclude>
+</$let>
+<span class="tc-tiddler-controls xp-aggregation-controls xp-aggregation-controls-phone">
+<<navigation-button>>
+{{||$:/xp/ui/Buttons/view-code_Aggregation}}
+{{||$:/core/ui/Buttons/delete}}
+<$let tv-config-toolbar-text= > <<new-paragraph-button>> </$let>
+{{||$:/core/ui/Buttons/edit}}
+<$list filter="[all[current]!tag<pid>]">{{||$:/core/ui/Buttons/close}}</$list>
+</span>
+</h2>
+
+<$reveal state=<<viewCodeState>> type="nomatch" text="show" retain="yes" animate="yes">
+
+<$transclude mode="block"><p>Missing tiddler.</p></$transclude>
+
+</$reveal>
+<$reveal state=<<viewCodeState>> type="match" text="show" animate="yes" retain="yes">
+
+<div style="position:relative;">
+<div class="tc-page-controls" style="position:absolute;bottom:0;right:0;top:0;font-size:14px;margin:0;">
+<$button class="tc-btn-boxed" style="padding:3px;border:none;" message="tm-copy-to-clipboard" param={{!!text}} tooltip={{$:/language/Buttons/CopyToClipboard/Hint}}>
+{{$:/core/images/copy-clipboard}}
+</$button>
+</div>
+</div>
+{{||$:/core/ui/ViewTemplate/body/code}}
+
+</$reveal>
+
+</div>

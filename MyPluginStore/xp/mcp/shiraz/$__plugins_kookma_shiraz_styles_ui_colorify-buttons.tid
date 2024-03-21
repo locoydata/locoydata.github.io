@@ -1,0 +1,4 @@
+title: $:/plugins/kookma/shiraz/styles/ui/colorify-buttons
+type: text/css
+
+.tc-page-controls .tc-image-new-button{fill:#5eb95e}.tc-page-controls .tc-image-options-button{fill:#8058a5}.tc-tiddler-controls .tc-image-edit-button{fill:#f37b1d}.tc-tiddler-controls .tc-image-info-button{fill:#0e90d2}

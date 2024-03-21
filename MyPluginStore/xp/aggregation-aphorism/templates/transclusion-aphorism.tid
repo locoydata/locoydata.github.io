@@ -1,0 +1,17 @@
+title: $:/templates/transclusion-aphorism
+
+\whitespace trim
+<div class={{{ [all[current]tag[Star]then[xp-aggregation-card-star]] ~[[xp-aggregation-card]] }}}>
+
+<span class="tc-tiddler-controls xp-aggregation-controls">
+<<starTiddlerButton>>
+{{||$:/core/ui/Buttons/delete}}
+{{||$:/core/ui/Buttons/edit}}
+<$list filter="[all[current]!tag<aggregationTag>]">{{||$:/core/ui/Buttons/close}}</$list>
+</span>
+
+<div class="tc-tags-wrapper" style="font-size:0.6em;"><$list filter="[all[current]tags[]sort[]] -[<aggregationTag>]" template="$:/core/ui/TagTemplate" storyview="pop"/></div>
+
+<$transclude mode="block"><p>Missing tiddler.</p></$transclude>
+
+</div>

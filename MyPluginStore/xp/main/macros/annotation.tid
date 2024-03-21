@@ -1,0 +1,80 @@
+tags: $:/tags/Macro
+title: $:/xp/macros/annotation
+
+\define annotation-inner(storeTiddler)
+\whitespace trim
+<div class="tc-drop-down-wrapper">
+<div class="xp-popup tc-popup-keep" style="max-width:550px;overflow-y:hidden;">
+<div class="xp-annotation-controls">
+<$button to=<<__storeTiddler__>> tooltip="Open this annotation" class="tc-btn-invisible">
+<$action-deletetiddler $tiddler=<<popupstate>>/>
+{{$:/core/images/link}}
+</$button>
+<$reveal state=<<editstate>> type="nomatch" text="yes">
+<$button set=<<editstate>> setTo="yes" tooltip="Edit this annotation" class="tc-btn-invisible">
+{{$:/core/images/edit-button}}
+</$button>
+</$reveal>
+<$reveal state=<<editstate>> type="match" text="yes">
+<$button set=<<editstate>> setTo="no" tooltip="Exit edit" class="tc-btn-invisible tc-selected">
+{{$:/core/images/edit-button}}
+</$button>
+</$reveal>
+</div>
+<div class="xp-popup-text">
+<$reveal state=<<editstate>> type="nomatch" text="yes">
+<$transclude tiddler=<<__storeTiddler__>> mode="block"/>
+</$reveal>
+<$reveal state=<<editstate>> type="match" text="yes">
+<$edit-text tiddler=<<__storeTiddler__>> tag="textarea" rows="15" class="xp-annotation-texteditor" focus="no"/>
+</$reveal>
+</div>
+</div></div>
+\end
+
+\define annotation-hover(text,storeTiddler)
+\whitespace trim
+<div class="xp-annotation-hover"> 
+<$button class="xp-annotation">
+$text$
+</$button>^^<span class="tc-btn-dropdown xp-image-annotation">{{$:/xp/images/annotation}}</span>^^
+<div class="xp-annotation-hover-text">
+<$macrocall
+  $name="annotation-inner"
+  storeTiddler=<<__storeTiddler__>>
+/>
+</div>
+</div>
+\end
+
+\define annotation-click(text,storeTiddler)
+\whitespace trim
+<$button popup=<<popupstate>> class="xp-annotation">
+$text$
+</$button>^^<span class="tc-btn-dropdown xp-image-annotation">{{$:/xp/images/annotation}}</span>^^<$reveal type="popup" state=<<popupstate>> position="below" updatePopupPosition="yes" class="tc-popup-keep" animate="yes" retain="yes" style="overflow-y:hidden;">
+<$macrocall
+  $name="annotation-inner"
+  storeTiddler=<<__storeTiddler__>>
+/>
+</$reveal>
+\end
+
+\define annotate(text,storeTiddler)
+\whitespace trim
+<$let popupstate={{{ [[$storeTiddler$]removeprefix[$:/annotation/]addprefix[$:/state/popup/annotation-]] }}} editstate={{{ [[$storeTiddler$]removeprefix[$:/annotation/]addprefix[$:/state/edit/annotation-]] }}}>
+<$reveal state="$:/config/annotation/mode" type="match" text="hover" default="hover" animate="yes" retain="yes">
+<$macrocall
+  $name="annotation-hover"
+  text=<<__text__>>
+  storeTiddler=<<__storeTiddler__>>
+/>
+</$reveal>
+<$reveal state="$:/config/annotation/mode" type="match" text="click">
+<$macrocall
+  $name="annotation-click"
+  text=<<__text__>>
+  storeTiddler=<<__storeTiddler__>>
+/>
+</$reveal>
+</$let>
+\end

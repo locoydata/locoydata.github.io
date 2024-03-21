@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/BallotBox
+
+<$button tag="a" tooltip="Ballot box">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&#9744;"
+/>
+
+<span class="tc-html-chooser-text">☐</span>
+
+</$button>

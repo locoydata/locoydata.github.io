@@ -1,0 +1,15 @@
+{
+	"title": "$:/plugins/telmiger/details",
+	"name": "DetailsWidget",
+	"description": "Disclosure HTML element",
+	"author": "Thomas Elmiger",
+	"core-version": ">=5.1.13",
+	"list": "readme support license",
+	"plugin-type": "plugin",
+	"type": "application/json",
+	"source": "https://tid.li/tw5/plugins.html",
+	"version": "0.8.0",
+	"created": "20170205215504722",
+	"modified": "20240106124548575",
+	"packaged-by": "Gatha on 6th January 2024, 13:47:24"
+}

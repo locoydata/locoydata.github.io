@@ -1,0 +1,14 @@
+title: $:/core/ui/KeyboardShortcuts/new-image
+tags: $:/tags/KeyboardShortcut
+key: ((new-image))
+
+\import $:/plugins/BTC/tiddlywiki-multi-columns/macros/Navigation
+
+\define not-multi-column-layout-message()
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
+<$navigator story="$:/StoryList" history="$:/HistoryList">
+{{$:/core/ui/Actions/new-image}}
+</$navigator>
+"""></$list>
+\end
+<$macrocall $name="btc-simple-multi-column-navigator" actions={{$:/core/ui/Actions/new-image}}/>

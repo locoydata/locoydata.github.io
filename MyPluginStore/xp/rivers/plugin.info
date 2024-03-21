@@ -1,0 +1,16 @@
+{
+	"title": "$:/plugins/xp/rivers",
+	"name": "Rivers",
+	"description": "Add a second column to a TiddlyWiki layout using the default layout",
+	"list": "readme settings",
+	"version": "0.0.2",
+	"core-version": ">=5.3.0",
+	"plugin-type": "plugin",
+	"dependents": "$:/plugins/xp/leftopentab $:/plugins/Gk0Wk/focused-tiddler",
+	"type": "application/json",
+	"author": "",
+	"created": "20200729135650113",
+	"modified": "20240111113913085",
+    "source": "https://giffmex.org/stroll/stroll.html#%24%3A%2Fplugins%2Fsq%2FStories",
+	"modifier": "kl"
+}

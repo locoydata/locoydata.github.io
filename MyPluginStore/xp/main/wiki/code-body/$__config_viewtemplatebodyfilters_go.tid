@@ -1,0 +1,5 @@
+list-before: $:/config/ViewTemplateBodyFilters/code-body
+tags: $:/tags/ViewTemplateBodyFilter $:/CodeBodyHighlight
+title: $:/config/ViewTemplateBodyFilters/go
+
+[suffix[.go]] [tag[.go]] -[[.go]] +[then[$:/xp/ui/ViewTemplate/body/code_go]]

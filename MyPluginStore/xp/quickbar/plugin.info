@@ -1,0 +1,13 @@
+{
+	"title": "$:/plugins/xp/quickbar",
+	"name": "QuickBar",
+	"description": "A shortcut toolbar on standby",
+	"list": "readme settings",
+	"version": "0.2.9",
+	"core-version": ">=5.3.0",
+	"plugin-type": "plugin",
+	"type": "application/json",
+	"author": "kl",
+	"created": "20211112052952405",
+	"modified": "20240108045515789"
+}

@@ -1,0 +1,65 @@
+.taghandler: 
+caption: {{$:/xp/images/paragraph}} PARAGRAPHS
+color: #bbb
+icon: $:/xp/images/paragraph
+title: PARAGRAPHS
+tmap.id: 12f8b357-ef9d-4830-939f-7885a78514d4
+
+\whitespace trim
+\function aggregationTag() [[$:/config/xp/aggregation-paragraphs/Tags]get[text]]
+
+\define storeTitle() $:/temp/search/paragraphs
+\function userInput() [<storeTitle>get[text]]
+\define searchFilter() [tag<aggregationTag>sort[]search:*<userInput>]
+
+\procedure new-tiddler()
+\whitespace notrim
+<$button tooltip="Create a paragraphs tiddler" aria-label="new paragraphs tiddler" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new tiddler
+<$action-sendmessage $message="tm-new-tiddler"
+tags=<<aggregationTag>>
+text={{{ [<now "[UTC]YYYY0MM0DD0hh0mm0ssXXX">addprefix[<<paras "]addsuffix[">>]] }}}
+/>
+</$button>
+\end new-tiddler
+
+<div class="tc-sidebar-lists xp-float-right">
+<<new-tiddler>>&emsp;<<help-button-to "$:/plugins/xp/aggregation-paragraphs">>
+</div>
+
+<$list filter="[tag<aggregationTag>limit[1]]" emptyMessage={{$:/aggregation/prompt}} variable="ignore">
+
+<span class="xp-search">
+Search <i class='tc-tiny-gap-left'/>
+<$macrocall
+  $name="keyboard-driven-input"
+  tiddler=<<storeTitle>>
+  type="search"
+  tag="input"
+  focus={{$:/config/xp/aggregation/SearchAutoFocus}}
+  inputCancelActions="<$action-deletetiddler $tiddler=<<storeTitle>>/>"
+/>
+</span>
+<i class='tc-tiny-gap-left'/>
+<span class="xp-search">
+<$reveal state=<<storeTitle>> type="nomatch" text="">
+<$button class="tc-btn-invisible">
+<$action-deletetiddler $tiddler=<<storeTitle>>/>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+</span>
+<$reveal state=<<storeTitle>> type="nomatch" text="">
+<$let resultCount={{{ [subfilter<searchFilter>count[]] }}}>
+<span class="xp-search-results">{{$:/language/Search/System/Matches}}</span>
+</$let>
+</$reveal>
+
+<$macrocall
+  $name="list-links"
+  filter=<<searchFilter>>
+  type="ol"
+  class="tc-muted"
+/>
+
+</$list>

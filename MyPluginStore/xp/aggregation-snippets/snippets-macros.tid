@@ -1,0 +1,7 @@
+tags: $:/tags/Macro/Aggregation
+title: $:/snippets-macros
+
+\define aggregationTag() Snippet
+\define uiTitle()        $:/config/xp/aggregation/ui/snippets
+
+<pre><$view field="text"/></pre>

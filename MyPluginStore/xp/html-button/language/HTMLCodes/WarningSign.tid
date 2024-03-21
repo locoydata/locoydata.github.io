@@ -1,0 +1,14 @@
+tags: $:/tags/TextEditor/HTMLCodes
+title: $:/language/HTMLCodes/WarningSign
+
+<$button tag="a" tooltip="Warning sign">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text="&#9888;"
+/>
+
+<span class="tc-html-chooser-text">⚠</span>
+
+</$button>

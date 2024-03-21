@@ -1,0 +1,5 @@
+list-before: $:/config/ViewTemplateBodyFilters/code-body
+tags: $:/tags/ViewTemplateBodyFilter $:/CodeBodyHighlight
+title: $:/config/ViewTemplateBodyFilters/bash
+
+[suffix[.sh]] [tag[.sh]] -[[.sh]] +[then[$:/xp/ui/ViewTemplate/body/code_bash]]

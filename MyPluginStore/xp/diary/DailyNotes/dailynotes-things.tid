@@ -1,0 +1,22 @@
+caption: 今日任务
+title: $:/dailynotes-things
+
+\import $:/xp/aggregation-gtd/macros
+\define lingo-base() $:/language/projectify/
+
+<div class="xp-gtd-sidebar">
+
+<h3>
+<$button to="GettingThingsDone" class="tc-btn-invisible xp-gtd-list-header-btn">
+<span class="tc-sidebar-header">~GettingThingsDone</span>
+</$button>
+</h3>
+
+<div class="xp-gtd-sidebar-addtodo">
+{{$:/xp/dailynotes/AddTodo}}
+</div>
+
+<<scheduleTodoList>>
+<<thingsDoneToday "[tag[GTD]tag[done]sameday<now YYYY0MM0DD>]">>
+
+</div>

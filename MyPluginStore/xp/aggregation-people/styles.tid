@@ -1,0 +1,14 @@
+tags: $:/tags/Stylesheet
+title: $:/xp/aggregation-people/styles
+
+.xp-people-info {
+    padding-top: 1px;
+    margin-bottom: -1em;
+}
+
+.pimg {
+    display: inline-block;
+    float: left;
+    height: 96px;
+    padding-right: 16px;
+}

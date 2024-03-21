@@ -1,0 +1,9 @@
+title: $:/config/xp/quickbar/phone/CommonButtons
+
+$:/core/ui/Buttons/home
+$:/core/ui/Buttons/close-all
+$:/core/ui/Buttons/fold-all
+$:/core/ui/Buttons/unfold-all
+$:/core/ui/Buttons/full-screen
+$:/xp/ui/Buttons/hide-quickbar
+$:/xp/quickbar/Buttons/toggle-sidebar

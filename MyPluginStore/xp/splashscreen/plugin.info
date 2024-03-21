@@ -1,0 +1,12 @@
+{
+	"title": "$:/plugins/xp/splashscreen",
+	"name": "Splash Screen",
+	"description": "Switch splash screen",
+	"list": "readme",
+	"version": "0.2.2",
+	"plugin-type": "plugin",
+	"type": "application/json",
+	"author": "kl",
+	"created": "20210127031225269",
+	"modified": "20231004050404986"
+}

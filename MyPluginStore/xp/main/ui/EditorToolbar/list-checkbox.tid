@@ -1,0 +1,14 @@
+caption: check list
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]]
+description: Apply checklist formatting to lines containing selection
+icon: $:/xp/images/checkbox
+shortcuts: ((list-checklist))
+tags: $:/tags/EditorToolbar
+title: $:/xp/ui/EditorToolbar/list-checkbox
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="prefix-lines"
+	character="[ ]"
+	count="1"
+/>

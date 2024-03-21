@@ -1,0 +1,14 @@
+code-body: yes
+modified: 20231229044551957
+tags: $:/tags/Stylesheet
+title: $:/plugins/kookma/pinboard/styles/corkboard-background
+type: text/vnd.tiddlywiki
+
+.cork-board{
+  background: url(<<datauri "$:/plugins/kookma/pinboard/images/cork.jpg">>);
+	
+  /* Center and scale the image nicely */
+  background-position: center;
+
+
+}

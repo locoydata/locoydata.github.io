@@ -1,0 +1,17 @@
+title: $:/plugins/danielo515/ContextPlugin/visualizer
+tags: $:/tags/SearchResults
+caption: Context
+
+\define searchResults()
+<$set name="resultCount" value="""<$count filter="[!is[system]search<userInput>]"/>""">
+
+{{$:/language/Search/Matches/Standard/Matches}}
+
+</$set>
+<$list filter="[!is[system]search<userInput>sort[title]limit[250]]">
+  {{!!title||$:/core/ui/ListItemTemplate}}
+  <$context term=<<userInput>> />
+</$list>
+\end
+
+<<searchResults>>

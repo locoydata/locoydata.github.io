@@ -1,0 +1,55 @@
+caption: {{$:/xp/images/control}}
+description: Control Buttons
+icon: $:/core/images/up-arrow
+is-dropup: yes
+tags: $:/tags/QuickBar/Phone
+title: $:/xp/quickbar/items/phone/controls
+
+\whitespace trim
+\define commonButtons()
+<hrheading class="tc-muted">COMMON</hrheading>
+<$let tv-config-toolbar-icons="yes" tv-config-toolbar-text="yes" tv-config-toolbar-clas="tc-btn-invisible">
+
+<$list filter={{$:/config/xp/quickbar/phone/CommonButtons}} variable="listItem">
+
+<$transclude tiddler=<<listItem>> mode="inline"/>
+
+</$list>
+
+</$let>
+\end
+
+\define otherButtons()
+<hrheading class="tc-muted">OTHERS</hrheading>
+<$let tv-config-toolbar-icons="yes" tv-config-toolbar-text="yes" tv-config-toolbar-clas="tc-btn-invisible">
+
+<$list filter="[[$:/tags/PageControls]tagging[]!is[draft]] -[[$:/core/ui/Buttons/more-page-actions]] -[[$:/xp/ui/Buttons/more-page-actions-cp]] -[enlist{$:/config/xp/quickbar/phone/CommonButtons}] -[[$:/xp/ui/Buttons/toggle-quickbar]]" variable="listItem">
+
+<$transclude tiddler=<<listItem>> mode="inline"/>
+
+</$list>
+
+</$let>
+\end
+
+<style>
+hrheading {
+	display: flex;
+	flex-direction: row;
+}
+
+hrheading:before,
+hrheading:after {
+	content: "";
+	flex: 1 1;
+	border-bottom: 1px solid;
+	margin: auto;
+}
+</style>
+
+<div style="margin:0 16px;">
+
+<<commonButtons>>
+<<otherButtons>>
+
+</div>

@@ -1,0 +1,13 @@
+caption: cpl.documentation
+tags: $:/tags/CPLGenerator
+title: $:/CPLGenerator/Items/cpl.documentation
+
+<td class="fb-item-name"><$link to=<<configTid>>><<getCaption>></$link></td>
+<td class="fb-item-input">
+  <span class="fb-item-input-textbox">
+  <$macrocall $name="keyboard-driven-input" tiddler=<<editTid>> field="text"
+      type="search" tag="input" focus="no" placeholder="input" class="tc-edit-texteditor"
+      inputCancelActions=<<cancel-input-actions>>/>
+  </span>
+</td>
+<td class="fb-item-add"></td>

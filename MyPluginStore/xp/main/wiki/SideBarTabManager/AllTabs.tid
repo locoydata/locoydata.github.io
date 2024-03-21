@@ -1,0 +1,42 @@
+caption: All Tabs
+title: $:/SideBarTabManager/AllTabs
+
+\define lingo-base() $:/language/TiddlerInfo/
+
+\define sidebarTabs() 
+$:/core/ui/SideBar/Open TableOfContents $:/core/ui/SideBar/Recent $:/core/ui/SideBar/Tools $:/core/ui/SideBar/More $:/xp/ui/SideBar/AdvancedSearch $:/xp/ui/SideBar/Aggregation $:/xp/ui/SideBar/BatchOperation $:/xp/ui/SideBar/Commander $:/xp/ui/SideBar/Diary $:/xp/ui/SideBar/Favorites $:/plugins/felixhayashi/tiddlymap/hook/liveTab $:/plugins/felixhayashi/tiddlymap/hook/editor $:/xp/ui/SideBar/Note $:/xp/ui/SideBar/Subtiddler $:/xp/ui/SideBar/Things $:/xp/ui/SideBar/Todolist $:/core/ui/ControlPanel/Toolbars $:/xp/ui/SideBar/Trashbin $:/xp/ui/SideBar/XpSettings
+\end
+
+\define itemTemplate() 
+<div class="tc-tab-buttons" style="padding:2px 0;">
+<$checkbox tiddler=<<currentTiddler>> tag="$:/tags/SideBar" checkactions="""<$action-listops $tiddler="$:/config/SideBarTabManager/History" $subfilter="-[<currentTiddler>]"/>""" uncheckactions="""<$action-listops $tiddler="$:/config/SideBarTabManager/History" $subfilter="[<currentTiddler>]"/>"""/> <span class="tc-icon-wrapper"><$button to=<<currentTiddler>> tooltip={{!!tooltip}}>
+<$set name="tv-wikilinks" value="no">
+<$transclude field="caption"><$view field="title"/></$transclude>
+</$set>
+</$button><i class="tc-muted">-- <$transclude field="description"/></i></span>
+</div>
+\end
+
+Select which tabs will be shown.
+
+<$wikify name="tabsList" text="<$list filter='[[$:/tags/SideBar]tagging[]format:titlelist[]]'><$text text={{!!title}}/></$list>">
+<$list filter="[enlist<sidebarTabs>] [[$:/tags/SideBar]tagging[]] [list[$:/config/SideBarTabManager/History]] +[has[title]tag[$:/tags/SideBar]sortby<tabsList>]">
+<<itemTemplate>>
+</$list>
+</$wikify>
+<$list filter="[enlist<sidebarTabs>] [[$:/tags/SideBar]tagging[]] [list[$:/config/SideBarTabManager/History]] +[has[title]!tag[$:/tags/SideBar]sort[]]">
+<<itemTemplate>>
+</$list>
+
+<$button> Reset tabs
+<$action-confirm $message="Are you sure to reset all displayed tabs">
+<$action-deletetiddler $filter="[tag[$:/tags/SideBar]] -TableOfContents"/>
+</$action-confirm>
+</$button>
+<$list filter="[list[$:/config/SideBarTabManager/History]!tag[$:/tags/SideBar]limit[1]]" variable="ignore">
+<$button> Clear history
+<$action-confirm $message="Are you sure you wish to clear the history?">
+<$action-deletetiddler $filter="$:/config/SideBarTabManager/History"/>
+</$action-confirm>
+</$button>
+</$list>

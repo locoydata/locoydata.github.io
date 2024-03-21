@@ -1,0 +1,22 @@
+caption: cpl.uri
+tags: $:/tags/CPLGenerator
+title: $:/CPLGenerator/Items/cpl.uri
+
+<td class="fb-item-name"><$link to=<<configTid>>><<getCaption>></$link></td>
+<td class="fb-item-input">
+<$select
+  tiddler=<<editTid>>
+  default="Unknown"
+  tooltip="Choosing the category"
+  class="fb-select">
+	<$list filter="[<configTid>get[text]enlist-input[]]">
+	<option value={{!!title}}><$text text={{!!title}}/></option>
+	</$list>
+</$select>
+  <span class="fb-item-input-textbox">
+  <$macrocall $name="keyboard-driven-input" tiddler=<<editTid>> field="text"
+      type="search" tag="input" focus="no" placeholder="input" class="tc-edit-texteditor"
+      inputCancelActions=<<cancel-input-actions>>/>
+  </span>
+</td>
+<td class="fb-item-add"></td>

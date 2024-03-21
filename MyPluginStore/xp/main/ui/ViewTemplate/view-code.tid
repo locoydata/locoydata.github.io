@@ -1,0 +1,12 @@
+tags: $:/tags/ViewTemplate
+title: $:/xp/ui/ViewTemplate/view-code
+
+\whitespace trim
+\define viewCodeState() $:/state/view-code/$(currentTiddler)$
+
+<$reveal state=<<viewCodeState>> type="match" text="show" animate="yes" retain="yes">
+
+<$transclude $variable="copycode" src={{!!text}}/>
+{{||$:/core/ui/ViewTemplate/body/code}}
+
+</$reveal>

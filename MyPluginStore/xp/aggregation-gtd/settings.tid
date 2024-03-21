@@ -1,0 +1,19 @@
+title: $:/plugins/xp/aggregation-gtd/settings
+
+\define uncheckactions()
+<$action-deletetiddler $tiddler='$:/config/xp/aggregation-gtd/ContentType'/>
+\end
+
+; Auto Preview
+: <$checkbox tiddler="$:/config/xp/aggregation-gtd/AutoPreview" field="text" checked="yes" unchecked="no" default="yes" checkactions="<$action-deletetiddler $tiddler='$:/config/xp/aggregation-gtd/AutoPreview'/>"> Easy Edit automatically enters preview mode</$checkbox>
+
+
+; Theme Mode
+: <$checkbox tiddler="$:/config/xp/aggregation-gtd/ThemeMode" field="text" checked="palette" uncheckactions="<$action-deletetiddler $tiddler='$:/config/xp/aggregation-gtd/ThemeMode'/>"> Follow the colour palette</$checkbox>
+
+
+; Content Type
+: <$checkbox tiddler="$:/config/xp/aggregation-gtd/ContentType" field="text" checked="text/markdown" default="" uncheckactions=<<uncheckactions>>> Use `text/markdown`</$checkbox>
+: <$checkbox tiddler="$:/config/xp/aggregation-gtd/ContentType" field="text" checked="text/x-markdown" default="" uncheckactions=<<uncheckactions>>> Use `text/x-markdown`</$checkbox>
+
+> 说明：创建的任务将使用选定的 [[Markdown|$:/plugins/tiddlywiki/markdown]] 文本类型。

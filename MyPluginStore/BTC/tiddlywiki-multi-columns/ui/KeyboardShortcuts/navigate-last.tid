@@ -1,0 +1,22 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/navigate-last
+tags: $:/tags/KeyboardShortcut
+key: ((navigate-last))
+
+\import $:/plugins/BTC/tiddlywiki-multi-columns/macros/Selectors $:/plugins/BTC/tiddlywiki-multi-columns/macros/Navigation
+
+\define not-multi-column-layout-message()
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] +[limit[1]]" variable="ignore" emptyMessage="""
+<$navigator story="$:/StoryList" history="$:/HistoryList">
+<$action-navigate $to={{{ [list[$:/StoryList]last[]] }}}/>
+</$navigator>
+"""></$list>
+\end
+\define actions()
+<$let nextTiddler={{{ [list<storyList>last[]] }}} cssEscapedTitle={{{ [<nextTiddler>escapecss[]] }}}>
+<$list filter="[<nextTiddler>is[draft]]" variable="ignore" emptyMessage=<<not-is-draft-focus-selector>>>
+<<btc-focus-title-input>>
+</$list>
+<$action-navigate $to=<<nextTiddler>>/>
+</$let>
+\end
+<$macrocall $name="btc-multi-column-navigator" actions=<<actions>>/>

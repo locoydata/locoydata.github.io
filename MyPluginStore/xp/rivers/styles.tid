@@ -1,0 +1,446 @@
+tags: $:/tags/Stylesheet
+title: $:/xp/rivers/styles
+
+\define if-fluid-fixed(text,disableText)
+<$reveal state="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" type="match" text="fluid-fixed">
+$text$
+</$reveal>
+<$reveal state="$:/themes/tiddlywiki/vanilla/options/sidebarlayout" type="nomatch" text="fluid-fixed">
+$disableText$
+</$reveal>
+\end
+
+\define twostorybreakpoint()
+<$text text={{$:/_sq/Stories/config/twostorybreakpoint}}/>
+\end
+
+\define sidebarbreakpoint()
+<$text text={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}/>
+\end
+
+\define sidebarwidth()
+<$text text={{$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth}}/>
+\end
+
+\define leftsidebarwidth()
+<$text text={{$:/xp/leftopentab/metrics/width}}/>
+\end
+
+\define storyriverpaddingleft()
+<$text text={{$:/xp/leftopentab/metrics/storyriverpaddingleft}}/>
+\end
+
+\define if-two-stories(twoStoryCommon,twoStorySidebar,twoStoryNoSidebar,oneStoryText,twoStoryDoubleSidebar,twoStoryLeftSidebar)
+<$reveal state="$:/config/_sq/Stories/story2" type="match" text="yes">
+<$reveal stateTitle="$:/_sq/Stories/Story2StoryList" stateField="list" type="nomatch" text="">
+$twoStoryCommon$
+<$reveal state="$:/state/sidebar" type="match" text="yes" default="yes">
+$twoStorySidebar$
+</$reveal>
+<$reveal state="$:/state/sidebar" type="nomatch" text="yes" default="yes">
+$twoStoryNoSidebar$
+</$reveal>
+<$reveal state="$:/config/LeftOpenTab/Status" type="match" text="show" default="hide">
+$twoStoryLeftSidebar$
+</$reveal>
+</$reveal>
+<$reveal stateTitle="$:/_sq/Stories/Story2StoryList" stateField="list" type="match" text="">
+$oneStoryText$
+</$reveal>
+</$reveal>
+<$reveal state="$:/config/_sq/Stories/story2" type="nomatch" text="yes">
+$oneStoryText$
+</$reveal>
+\end
+
+
+.tc-page-container.tc-page-view-zoomin .tc-storyview-zoomin-tiddler {
+    width: 100%;
+    position: relative;
+}
+
+.tc-story-river .sq-button-divert-left {
+    display: none;
+}
+
+/**  SCROLLBAR  **/
+
+.sq-story-rivertwo-scrollable::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.sq-story-rivertwo-scrollable::-webkit-scrollbar-thumb {
+    background: #a5a5a5;
+    border-radius: 10px;
+}
+
+.sq-story-rivertwo-scrollable::-webkit-scrollbar-thumb:hover {
+    background: #6f6f6f;
+}
+
+.sq-story-rivertwo-scrollable::-webkit-scrollbar-thumb:active {
+    background: #333;
+}
+
+/**  OPEN TAB  **/
+
+.tc-sidebar-tab-open.sq-sidebar-open .tc-btn-invisible.tc-btn-mini {
+    padding: 0 0.2em;
+}
+
+.tc-sidebar-tab-open.sq-sidebar-open .tc-sidebar-tab-open-item {
+    padding: 0.1em;
+}
+
+html body.tc-body .tc-sidebar-tab-open.sq-sidebar-open a.tc-tiddlylink {
+    font-weight: 400;
+}
+
+.tc-sidebar-tab-open.sq-sidebar-open a.tc-tiddlylink {
+    color: <<color very-muted-foreground>>;
+}
+
+.tc-sidebar-tab-open.sq-sidebar-open a.tc-tiddlylink:hover {
+    color: <<color sidebar-tiddler-link-foreground-hover>>;
+}
+
+/**  TWO STORY  **/
+
+<<if-two-stories twoStoryCommon:"""
+@media (min-width: <<twostorybreakpoint>>) {
+    .sq-story-rivertwo-scrollable {
+        position: fixed;
+        top: calc(1em + {{$:/themes/tiddlywiki/vanilla/metrics/storytop}});
+        bottom: 0;
+        overflow-y: auto;
+        margin-left: -10px;
+    }
+
+    /* Compatible with $:/plugins/xp/sidebarlayout */
+    <$reveal state="$:/config/LeftOpenTab/Status" type="nomatch" text="show">
+        <$reveal state="$:/state/sidebar" default="yes" type="match" text="yes">
+            <$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fluid-fixed]match[fixed-fluid]]" variable="ignore">
+    .tc-tiddler-frame {
+        width: calc(({{$:/themes/tiddlywiki/vanilla/metrics/storyright}} - 40px)/2);
+    }
+            </$list>
+        </$reveal>
+    </$reveal>
+
+    .tc-story-river.sq-story-rivertwo .tc-tiddler-frame {
+        margin-right: 1em !important;
+        margin-left: 0px;
+        font-size: {{$:/config/xp/rivers/story2/fontsize-title}}px;
+        top: {{$:/themes/tiddlywiki/vanilla/metrics/storytop}};
+
+        /* Compatible with $:/plugins/xp/sidebarlayout */
+        <$reveal state="$:/config/LeftOpenTab/Status" type="nomatch" text="show">
+            <$reveal state="$:/state/sidebar" default="yes" type="match" text="yes">
+                <$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fluid-fixed]match[fixed-fluid]]" variable="ignore">
+        margin-left: 33px;
+                </$list>
+            </$reveal>
+        </$reveal>
+    }
+
+    <$reveal state="$:/themes/tiddlywiki/vanilla/options/stickytitles" type="match" text="yes">
+
+    .tc-story-river.sq-story-rivertwo .tc-tiddler-title {
+        top: -1em;
+    }
+
+    <$list filter="[[$:/xp/Stylesheet/sticky-editor-toolbar]tag[$:/tags/Stylesheet]]" variable="ignore">
+    .tc-story-river.sq-story-rivertwo .tc-editor-toolbar {
+        top: calc(39px - 1em);
+    }
+    </$list>
+
+    </$reveal>
+
+    .tc-story-river.sq-story-rivertwo .tc-tiddler-frame .tc-tiddler-body {
+        font-size: {{$:/config/xp/rivers/story2/fontsize-body}}px;
+    }
+
+    .tc-story-river {
+        float: left;
+        margin-right: 0;
+        padding-right: 0em;
+        padding-top: 0em;
+    }
+
+    body .tc-story-river {
+        padding: 0 1.5em 1em 0em !important;
+        min-height: 500px;
+        /** so story 2 doesnt collapse to left when no tiddler in story 1 **/
+    }
+
+    body .tc-story-river.tc-storytwo-river {
+        padding-right: 0em !important;
+    }
+
+    body section.story-backdrop p:nth-child(1) {
+        margin: 0;
+        padding: 0;
+    }
+
+    .tc-story-river .sq-button-divert-right {
+        display: inline-block;
+    }
+
+    .tc-story-river .sq-button-divert-left {
+        display: none;
+    }
+
+    .tc-story-river.sq-story-rivertwo .sq-button-divert-left {
+        display: inline-block;
+    }
+
+    .tc-story-river.sq-story-rivertwo .sq-button-divert-right {
+        display: none;
+    }
+
+    .sq-storydropzone {
+        padding: 0.5em;
+        border: 1px solid #bbb;
+        color: #ccc;
+        text-align: center;
+        position: relative;
+        width: calc(100% - 45px);
+        -moz-box-shadow: inset 0 0 10px #ccc;
+        -webkit-box-shadow: inset 0 0 10px #ccc;
+        box-shadow: inset 0 0 10px #ccc;
+        margin-bottom: 1em;
+    }
+
+    .sq-storydropzone-newtiddlerbutton {
+        width: 40px;
+        float: right;
+        padding: 0.2em 0.5em 0.5em 0.5em;
+        margin-top: 0em;
+        margin-right: 0.2em;
+    }
+
+    .tc-tiddler-frame {
+        padding-right: 28px;
+    }
+}
+""" twoStorySidebar:"""
+
+@media (min-width: <<twostorybreakpoint>>) {
+    .tc-story-river {
+        width: calc((100% - {{$:/themes/tiddlywiki/vanilla/metrics/storyleft}} - {{$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth}} + 22px)/2);
+
+        /* Compatible with $:/plugins/xp/sidebarlayout */
+        <$reveal state="$:/config/LeftOpenTab/Status" type="nomatch" text="show">
+            <$reveal state="$:/state/sidebar" default="yes" type="match" text="yes">
+                <$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fluid-fixed]match[fixed-fluid]]" variable="ignore">
+        width: calc(({{$:/themes/tiddlywiki/vanilla/metrics/storyright}} - 40px)/2);
+                </$list>
+            </$reveal>
+        </$reveal>
+    }
+
+    .sq-storydropzone {
+        padding: 0.5em;
+        border: 1px solid #bbb;
+        color: #ccc;
+        text-align: center;
+    }
+
+    .sq-story-rivertwo-scrollable,
+    .sq-story-rivertwo {
+        width: calc((100% - {{$:/themes/tiddlywiki/vanilla/metrics/storyleft}} - {{$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth}} - 20px)/2);
+
+        /* Compatible with $:/plugins/xp/sidebarlayout */
+        <$reveal state="$:/config/LeftOpenTab/Status" type="nomatch" text="show">
+            <$reveal state="$:/state/sidebar" default="yes" type="match" text="yes">
+                <$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fluid-fixed]match[fixed-fluid]]" variable="ignore">
+        width: calc(({{$:/themes/tiddlywiki/vanilla/metrics/storyright}} + 42px)/2);
+        margin-left: -14px;
+                </$list>
+            </$reveal>
+        </$reveal>
+    }
+
+}
+
+/**
+.tc-sidebar-scrollable {
+    width: calc({{$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth}} - 14px);
+    padding-left: 28px;
+}
+**/
+
+@media (min-width: <<twostorybreakpoint>>) and (max-width: {{$:/_sq/Stories/config/sidebaroverlaybreakpoint}}) {
+    .tc-story-river {
+        width: calc((100% + 9px)/2);
+    }
+
+    .sq-story-rivertwo {
+        width: calc((100% - 1em)/2);
+    }
+
+
+    .sq-story-rivertwo-scrollable {
+        width: calc((100% - 33px)/2);
+    }
+
+    .tc-sidebar-scrollable {
+        z-index: 999;
+        background: #eee;
+        border-left: 1px solid #ddd;
+    }
+}
+
+""" twoStoryNoSidebar:"""
+
+.tc-story-river.sq-story-rivertwo {
+    padding-right: 0.5em;
+}
+
+@media (min-width: <<twostorybreakpoint>>) {
+    .tc-story-river {
+        width: calc((100% + 9px)/2);
+    }
+
+    .sq-story-rivertwo {
+        width: calc((100% - 1em)/2);
+    }
+
+    .sq-story-rivertwo-scrollable {
+        width: calc((100% - 33px)/2);
+    }
+}
+
+@media (min-width: <<twostorybreakpoint>>) and (max-width: {{$:/_sq/Stories/config/sidebaroverlaybreakpoint}}) {
+    .tc-sidebar-scrollable {
+        display: none;
+    }
+}
+
+""" oneStoryText: """
+.sq-twostoriesonly {
+    display: none;
+}
+
+.tc-story-river {
+    padding-top: 15px;
+}
+
+""" twoStoryLeftSidebar: """
+
+@media (min-width: <<twostorybreakpoint>>) {
+    .tc-story-river {
+        transition: width 250ms, padding 250ms;
+        <$list filter="[list[$:/_sq/Stories/Story2StoryList]limit[1]]">
+            <$reveal state="$:/state/sidebar" type="match" text="yes" default="yes">
+        width: calc((100% - <<sidebarwidth>> - <<leftsidebarwidth>> + <<storyriverpaddingleft>> + 2px)/2) !important;
+        left: <<storyriverpaddingleft>>;
+
+            /* Compatible with $:/plugins/xp/sidebarlayout */
+            <$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fluid-fixed]match[fixed-fluid]]" variable="ignore">
+        width: calc(({{$:/themes/tiddlywiki/vanilla/metrics/storyright}} - <<leftsidebarwidth>> + 22px)/2) !important;
+        margin-left: calc(<<leftsidebarwidth>> - <<storyriverpaddingleft>>) !important;
+            </$list>
+            </$reveal>
+            <$reveal state="$:/state/sidebar" type="match" text="no" default="yes">
+        width: calc((100% - <<leftsidebarwidth>> + 20px)/2) !important;
+        left: <<storyriverpaddingleft>>;
+
+            /* Compatible with $:/plugins/xp/sidebarlayout */
+            <$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fluid-fixed]match[fixed-fluid]]" variable="ignore">
+        margin-left: calc(<<storyriverpaddingleft>> + 172px) !important;
+            </$list>
+            </$reveal>
+        </$list>
+    }
+
+    .tc-story-river.tc-storytwo-river {
+        height: 0 !important;
+        width: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .sq-story-rivertwo-scrollable {
+        top: 0;
+        width: calc(100% - <<sidebarwidth>> - <<leftsidebarwidth>> - <<storyriverpaddingleft>>);
+        transition: width 250ms, padding 250ms, right 250ms;
+    <$list filter="[[$:/StoryList]field:list[]]">
+        left: calc(<<leftsidebarwidth>> + <<storyriverpaddingleft>>) !important;
+    </$list>
+    <$list filter="[list[$:/StoryList]limit[1]]">
+        left: unset !important;
+            <$reveal state="$:/state/sidebar" type="match" text="yes" default="yes">
+        width: calc((100% - <<sidebarwidth>> - <<leftsidebarwidth>> + 2px)/2) !important;
+        padding: 1em 0 42px 0;
+        margin-left: -16px;
+
+            /* Compatible with $:/plugins/xp/sidebarlayout */
+            <$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fluid-fixed]match[fixed-fluid]]" variable="ignore">
+        width: calc(({{$:/themes/tiddlywiki/vanilla/metrics/storyright}} - <<leftsidebarwidth>> - 20px)/2) !important;
+            </$list>
+            </$reveal>
+            <$reveal state="$:/state/sidebar" type="match" text="no" default="yes">
+        width: calc((100% - <<leftsidebarwidth>> - <<storyriverpaddingleft>> + 20px)/2) !important;
+        padding: 1em 0 42px 0;
+        right: 12px !important;
+            </$reveal>
+    </$list>
+    }
+
+    .tc-tiddler-frame {
+        width: 100% !important;
+    }
+}
+
+"""
+>>
+
+@media (max-width: <<twostorybreakpoint>>) {
+    .sq-twostoriesonly {
+        display: none;
+    }
+
+    .tc-btn-storytwotoggle {
+        display: none;
+    }
+
+    .sq-stories-disabled {
+        display: none;
+    }
+
+<<if-two-stories twoStoryCommon:"""
+
+    .tc-storytwo-river { display: none; }
+    .tc-story-river { width: auto; padding-top: 15px; }
+    .tc-story-river .sq-button-divert { display: none; }
+    .sq-story-rivertwo-scrollable { display:none; }
+
+
+""" twoStorySidebar:"""
+    .tc-story-river {
+        margin-right: {{$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth}};
+    }
+
+    .tc-sidebar-scrollable {
+        border-left: 0;
+        z-index: inherit;
+        background: transparent;
+    }
+""" twoStoryNoSidebar: """
+    .tc-story-river {
+        padding-right: 2em;
+    }
+"""
+
+>>
+}
+
+@media (max-width: {{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}) {
+    .tc-story-river {
+        margin-right: 0;
+    }
+}
+

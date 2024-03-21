@@ -1,0 +1,22 @@
+caption: {{$:/xp/images/programs}} SOFTWARE
+color: #bbb
+icon: $:/xp/images/programs
+title: SOFTWARE
+tmap.id: 3fbb6a21-23c1-43fd-971c-a38e4a019f58
+
+\import $:/software-macros
+
+<div class="tc-sidebar-lists xp-float-right">
+<$button actions={{$:/xp/ui/Actions/new-software}} tooltip="Create a new software" aria-label="new software" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new software
+</$button>&emsp;<<aggregationCount>>&emsp;<<help-button-to "$:/software-help">>
+</div>
+
+<$macrocall
+  $name="aggregation-with-tag"
+  state="aggregation-software"
+  class=""
+  cardTemplate="$:/software-card-template"
+  searchClass="xp-search-software"
+  promptTiddler="$:/software-prompt"
+/>

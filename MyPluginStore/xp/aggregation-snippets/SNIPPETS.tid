@@ -1,0 +1,178 @@
+caption: {{$:/xp/images/wikitext}} SNIPPETS
+color: #bbb
+icon: $:/xp/images/wikitext
+title: SNIPPETS
+tmap.id: 814ad6af-a396-4dba-9da4-27d8eead4a7f
+
+\import $:/aggregation/macros/general $:/snippets-macros
+\whitespace trim
+
+\define storeTitle() $:/temp/search/snippets
+\define filterState() $:/state/filter/aggregation-snippets
+\function configTiddler() $:/config/xp/aggregation-snippets/SearchScope
+\define templateTiddler() $:/config/xp/aggregation-snippets/TiddlerTemplate
+\define readingMode() $:/config/xp/aggregation-snippets/ReadingMode
+\define tocState() $:/state/xp/aggregation-snippets/toc
+\define selectedTiddler() $:/temp/toc/selectedTiddler/aggregation-snippets
+\define SubStoryList() $:/temp/xp/aggregation-snippets/SubStoryList
+\define SubHistoryList() $:/temp/xp/aggregation-snippets/SubHistoryList
+
+\define alltagsfilter()
+<$let L="tag[" R="]" lb="[" rb={{{ [<configTiddler>get[text]removeprefix<lb>] }}}>
+<$set filter="[list<filterState>addprefix<L>addsuffix<R>]+[join[]addprefix<lb>addsuffix<rb>addsuffix<sortRun>]" name="alltags" select=0>
+<$text text=<<alltags>>/>
+</$set>
+</$let>
+\end
+
+\define cancel-search-actions() <$action-deletetiddler $filter="[<filterState>get[checktiddler]enlist-input[]]"/><$action-deletetiddler $filter="[<storeTitle>] [<filterState>]"/><$action-sendmessage $message="tm-focus-selector" $param=".xp-search-snippets input"/>
+
+
+\define keepstate() $:/keepstate/xp/aggregation-snippets
+\define pageTiddler() $(keepstate)$/Pagination
+\define pageStateTiddler() $(keepstate)$/page-number
+\define entryPerPageStateTiddler() $(keepstate)$/entry-per-page
+
+\define newSnippetButton()
+<$button actions={{$:/xp/ui/Actions/new-snippet}} tooltip="Create a new snippet" aria-label="new snippet" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new snippet
+</$button>
+\end
+
+\define navigatorNewSnippet()
+\whitespace trim
+<$let page-number={{{ [<pageStateTiddler>get[text]] ~1 }}} >
+<$list filter="[<storeTitle>!has[text]] [<filterState>!has[list]] [<readingMode>!text[on]] [<page-number>compare:number:lt[2]] +[count[]match[4]]" emptyMessage=<<newSnippetButton>>>
+<$navigator story=<<SubStoryList>> history=<<SubHistoryList>>><<newSnippetButton>></$navigator>
+</$list>
+</$let>
+\end
+
+\define show-pagination()
+\whitespace notrim
+<!-- $:/plugins/kookma/shiraz/macros/dtables/table-dynamic -->
+<$reveal default=<<pagination>> type="match" text="yes" tag="div" class="shiraz-dtable-page-footer">
+<hr>
+<<prev-button>>
+Displaying <$text text={{{[<low>add[1]]}}}/> through <$text text={{{ [<high>compare:number:lt<total-entries>then<high>else<total-entries>] }}}/> of <<total-entries>> Results | <<limit-entries 10>>
+<<next-button>>
+</$reveal>
+\end
+
+<div class="tc-sidebar-lists xp-float-right">
+<<navigatorNewSnippet>>&emsp;<<aggregationCount>>&emsp;<<help-button-to "$:/snippets-help">>
+</div>
+
+<$list filter="[tag<aggregationTag>limit[1]]" emptyMessage={{$:/snippets-prompt}} variable="ignore">
+
+<!-- Search Box -->
+<span class="xp-search xp-search-snippets">
+Search &#32; <$macrocall $name="selectSearchScope" actions=<<snippets-select-actions>>/> <i class='tc-small-gap-left'/> <$macrocall
+	$name="keyboard-driven-input"
+	tiddler=<<storeTitle>>
+	type="search"
+	tag="input"
+	focus="true"
+	inputCancelActions=<<cancel-search-actions>>
+/>
+</span>
+<i class='tc-tiny-gap-left'/>
+<$let
+	userInput={{{ [<storeTitle>get[text]] }}}
+	pagination={{{ [<pageTiddler>get[text]] }}}
+	sortRun="+[!sort[created]]"
+	resultCount="<$count filter='[subfilter<searchFilter>!has[draft.of]]'/>"
+	>
+<$wikify text="<$macrocall $name='alltagsfilter' filterState=<<filterState>>/>" name="alltagsfilterwikified">
+<$set name="searchFilter" filter="[<filterState>has[list]]" value=<<alltagsfilterwikified>>
+	emptyValue={{{ [<configTiddler>get[text]addsuffix<sortRun>] }}}>
+<span class="tc-search">
+<$list filter=<<filter-state-exists>> variable="ignore">
+<$button class="tc-btn-invisible">
+<<cancel-search-actions>>
+{{$:/core/images/close-button}}
+</$button>
+</$list>
+<<pagination-button>>
+<<aggrbtn-reading-mode>>
+<$macrocall $name="aggrbtn-toc" filter=<<searchFilter>>/>
+<$list filter=<<filter-state-exists>> variable="ignore">
+<span class="xp-search-results"><<lingo System/Matches>></span>
+</$list>
+</span>
+
+<!-- Filter Panel -->
+<$wikify text=<<listTagsInUse>> name="tagsInUse">
+<$list filter="[enlist<tagsInUse>limit[1]]" variable="ignore">
+<div class="xp-wrapper-aggrfilter">
+<div class="xp-aggrfilter-category" style="font-size:1em;padding:10px 0;">
+<span class="xp-aggrfilter-category-item">
+<$list filter="[enlist<tagsInUse>sort[]]" variable="currentItem">
+<$macrocall $name="aggrfilteritem" item=<<currentItem>>/>
+</$list>
+<<aggrbtn-deselect>>
+</span>
+</div>
+</div>
+</$list>
+</$wikify>
+
+
+<!-- Result List -->
+<$reveal state=<<readingMode>> type="nomatch" text="on">
+
+<$let
+  listFilter="[subfilter<searchFilter>] -[subfilter<searchFilter>has[draft.of]get[draft.title]]"
+  total-entries={{{ [subfilter<listFilter>count[]] }}}
+  page-number={{{ [<pageStateTiddler>get[text]] ~1 }}} 
+  entries-per-page={{{ [<entryPerPageStateTiddler>get[text]] ~10 }}}
+  low={{{ [<page-number>subtract[1]multiply<entries-per-page>] }}}  
+  high={{{ [<page-number>multiply<entries-per-page>] }}}
+  >
+<$set name="finalFilter" filter="[<pagination>match[yes]]" value="[subfilter<listFilter>first<high>] -[subfilter<listFilter>first<low>]" emptyValue=<<listFilter>>>
+
+<$transclude
+  $variable="substory-navigator"
+  text="""<p/>
+<div class="tc-link-info">
+
+<$list
+  filter=<<finalFilter>>
+  history=<<SubHistoryList>>
+  template={{{ [<templateTiddler>has[text]get[text]] ~[[$:/templates/transclusion-snippet]] }}}
+  editTemplate={{{ [[$:/config/xp/aggregation-snippets/EditTemplate]has[text]get[text]] ~[{$:/config/ui/EditTemplate}] }}}
+  storyview={{$:/config/xp/aggregation-snippets/view}}
+/>
+
+</div>
+"""
+  catchlink=yes
+  filter="[tag<aggregationTag>]"
+/>
+
+<<show-pagination>>
+
+</$set>
+</$let>
+
+</$reveal>
+
+<!-- Reading Mode -->
+<$reveal state=<<readingMode>> type="match" text="on">
+<$list filter="[subfilter<searchFilter>limit[1]]" variable="ignore">
+
+<$macrocall
+	$name="aggregation-toc"
+	filter="[subfilter<searchFilter>!has[draft.of]]"
+	selectedTiddler=<<selectedTiddler>>
+	exclude=<<aggregationTag>>
+	tocState=<<tocState>>
+	navTiddler={{{ [<uiTitle>get[text]] }}}
+/>
+
+</$list>
+</$reveal>
+
+</$set></$wikify></$let>
+
+</$list>

@@ -1,0 +1,4 @@
+tags: $:/CodeBodyHighlight
+title: $:/xp/ui/ViewTemplate/body/code_bash
+
+<$transclude $variable="code-copycode" src={{!!text}} language="bash"/>

@@ -1,0 +1,49 @@
+caption: {{$:/language/SideBar/Tags/Caption}}
+rewrite: 5.2.6
+tags: $:/tags/MoreSideBar
+title: $:/core/ui/MoreSideBar/Tags
+
+\whitespace trim
+\define storeTitle() $:/temp/search/tags/moresidebar
+\define cancel-search-actions() <$action-deletetiddler $filter=<<storeTitle>>/><$action-sendmessage $message="tm-focus-selector" $param=".search-tags-moresidebar input"/>
+
+<$let tv-config-toolbar-icons="yes" tv-config-toolbar-text="yes" tv-config-toolbar-class="">
+  <div class="tc-tiny-v-gap-bottom">
+    {{$:/core/ui/Buttons/tag-manager}}
+  </div>
+</$let>
+<!-- Add search box -->
+<span class="search-tags-moresidebar">
+<$macrocall
+  $name="keyboard-driven-input"
+  tiddler=<<storeTitle>>
+  type="search"
+  tag="input"
+  focus={{$:/config/Search/AutoFocus}}
+  inputCancelActions=<<cancel-search-actions>>
+  placeholder={{{ [tags[]!is[system]count[]addsuffix[ tags]] }}}
+/>
+<$reveal state=<<storeTitle>> type="nomatch" text="">
+<$button class="tc-btn-invisible tc-btn-dropdown tc-tiny-gap">
+<<cancel-search-actions>>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+</span>
+<$let
+  userInput={{{ [<storeTitle>get[text]] }}} 
+  searchFilter="[tags[]!is[system]sort[]search:title<userInput>]" 
+  resultCount="<$count filter=<<searchFilter>>/>">
+<$reveal state=<<storeTitle>> type="nomatch" text="">
+<div class="tc-search-results">{{$:/language/Search/System/Matches}}</div>
+</$reveal>
+<div style="margin-top:3px;">
+<$list filter=<<searchFilter>>>
+  <div class="tc-tiny-v-gap-bottom">
+    <$transclude tiddler="$:/core/ui/TagTemplate"/>
+  </div>
+</$list>
+</div>
+</$let>
+<hr class="tc-untagged-separator">
+{{$:/core/ui/UntaggedTemplate}}

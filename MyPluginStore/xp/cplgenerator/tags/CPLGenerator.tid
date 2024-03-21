@@ -1,0 +1,2 @@
+list: $:/CPLGenerator/Items/cpl.title $:/CPLGenerator/Items/title $:/CPLGenerator/Items/cpl.plugin-type $:/CPLGenerator/Items/cpl.category $:/CPLGenerator/Items/cpl.tags $:/CPLGenerator/Items/cpl.documentation $:/CPLGenerator/Items/cpl.uri
+title: $:/tags/CPLGenerator

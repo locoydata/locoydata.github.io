@@ -1,0 +1,5 @@
+tags: $:/tags/Image
+title: $:/xp/images/more
+
+\parameters (size:"22pt")
+<svg width=<<size>> height=<<size>> class="xp-image-more tc-image-button" viewBox="0 0 1024 1024"><path d="M768 768v85.333333H256v-85.333333h512z m128-298.666667v85.333334H128v-85.333334h768z m-128-298.666666v85.333333H256V170.666667h512z"/></svg>

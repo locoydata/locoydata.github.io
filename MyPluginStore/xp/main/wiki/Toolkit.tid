@@ -1,0 +1,70 @@
+color: #bbb
+icon: $:/xp/images/toolkit
+title: $:/Toolkit
+
+\whitespace trim
+
+\define lingo-base() $:/language/ControlPanel/
+
+\define cancel-search-actions()
+\whitespace trim
+<$list
+	filter="[{$:/temp/toolkit}!match{$:/temp/toolkit/input}]"
+	emptyMessage="<$action-deletetiddler $filter='[[$:/temp/toolkit]] [[$:/temp/toolkit/input]] [[$:/temp/toolkit/selected-item]]' />">
+	<$action-setfield $tiddler="$:/temp/toolkit/input" text={{$:/temp/toolkit}}/>
+	<$action-setfield $tiddler="$:/temp/toolkit/refresh" text="yes"/>
+</$list>
+\end
+
+\define link-button()
+<$button tooltip="Open the tiddler" class="tc-btn-invisible tc-btn-mini tc-small-gap-right" style="font-size:.75em;">
+<$action-navigate $to=<<listItem>>/>
+<span class="tc-btn-icon">{{$:/core/images/link}}</span>
+</$button>
+\end
+
+<div class="tc-search">
+<$macrocall $name="keyboard-driven-input"
+	tiddler="$:/temp/toolkit/input"
+	storeTitle="$:/temp/toolkit"
+	refreshTitle="$:/temp/toolkit/refresh"
+	selectionStateTitle="$:/temp/toolkit/selected-item"
+	type="search"
+	tag="input"
+	focus="yes"
+	inputCancelActions=<<cancel-search-actions>>/>
+<i class="tc-tiny-gap-right"/>
+<$reveal state="$:/temp/toolkit" type="nomatch" text="">
+<$button class="tc-btn-invisible tc-small-gap-right">
+<<cancel-search-actions>>
+{{$:/core/images/close-button}}
+</$button>
+//<small><$count filter='[[$:/tags/Toolkit]tagging[]!is[draft]search{$:/temp/toolkit}]'/> matches</small>//
+</$reveal>
+</div>
+
+<div class="tc-search-results">
+
+<$set name="tv-config-toolbar-icons" value="yes">
+
+<$set name="tv-config-toolbar-text" value="yes">
+
+<$set name="tv-config-toolbar-class" value="">
+
+<$list filter="[[$:/tags/Toolkit]tagging[]!is[draft]search{$:/temp/toolkit}sort[title]limit[250]]" variable="listItem">
+
+<div style="position:relative;" class={{{ [<listItem>encodeuricomponent[]addprefix[tc-btn-]] }}}>
+
+<<link-button>> <$transclude tiddler=<<listItem>>/> <i class='tc-tiny-gap'/><i class="tc-muted"><$transclude tiddler=<<listItem>> field="description"/></i>
+
+</div>
+
+</$list>
+
+</$set>
+
+</$set>
+
+</$set>
+
+</div>

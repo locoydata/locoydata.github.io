@@ -1,0 +1,13 @@
+caption: 聚合视图
+title: $:/bookshelf-aggregation-view
+
+\import $:/bookshelf-macros
+
+<$macrocall
+  $name="aggregation-with-tag"
+  state="aggregation-bookshelf"
+  class=""
+  cardTemplate="$:/bookshelf-card-template"
+  searchClass="xp-search-bookshelf"
+  promptTiddler="$:/bookshelf-prompt"
+/>

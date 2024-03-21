@@ -1,0 +1,17 @@
+created: 20240320033048644
+modified: 20240320033102464
+tags: 
+title: $:/config/FileSystemPaths
+type: text/vnd.tiddlywiki
+
+[is[system]!tag[GTD]!tag[Checklist]!has[draft.of]removeprefix[$:/]addprefix[_system/]]
+[tag[Private]!tag[Journal]addprefix[private/]]
+[tag[Journal]tag[Private]addprefix[journals/private/]]
+[tag[Journal]addprefix[journals/]]
+[is[draft]search-replace:g:regexp[/|\\],[_]addprefix[drafts/]]
+[is[image]addprefix[images/]]
+[tag[GTD]removeprefix[$:/gtd/]addprefix[task-management/gtd/]]
+[tag[task]addprefix[task-management/tasks/]]
+[tag[todo]addprefix[task-management/todo/]]
+[tag[Checklist]addprefix[task-management/checklist/]]
+[!tag[externalnote]addprefix[wiki/]]

@@ -1,0 +1,35 @@
+tags: $:/tags/Macro
+title: $:/xp/diary/macros/flex-button
+
+\define flex-button-styles()
+background-color:$(backgroundColor)$;
+fill:$(foregroundColor)$;
+color:$(foregroundColor)$;
+\end
+
+\define flex-button-inner(tid,icon,colour,fallbackTarget,colourA,colourB)
+\whitespace trim
+<$vars
+	foregroundColor=<<contrastcolour target:"""$colour$""" fallbackTarget:"""$fallbackTarget$""" colourA:"""$colourA$""" colourB:"""$colourB$""">>
+	backgroundColor="""$colour$""">
+<$button
+	actions={{{ [{!!action-tiddler}has[text]get[text]] ~{{$:/xp/diary/Actions/general}} }}}
+	dragFilter='[all[current]]'
+	class="xp-flex-button tc-btn-invisible"
+	style=<<flex-button-styles>>>
+<div class={{{ [<__tid__>has[description]then[xp-flex-button-name]else[xp-flex-button-name-only]] }}}>
+<$transclude tiddler="""$icon$"""/><$transclude field="caption"><$view field="title"/></$transclude>
+</div>
+<div class={{{ [<__tid__>has[description]then[xp-flex-button-body]else[xp-flex-button-body-none]] }}}>
+<$transclude field="description" mode="block"/>
+</div>
+<div style="clear:both;"></div>
+</$button>
+\end
+
+\define flex-button(tid,icon,colour,palette)
+\whitespace trim
+<div class="xp-flex-button" data-tag-title=<<__tid__>>>
+<$macrocall $name="flex-button-inner" tid=<<__tid__>> icon="""$icon$""" colour="""$colour$""" fallbackTarget={{$palette$##tag-background}} colourA={{$palette$##foreground}} colourB={{$palette$##background}}/>
+</div>
+\end

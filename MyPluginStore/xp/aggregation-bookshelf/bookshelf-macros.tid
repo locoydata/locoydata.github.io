@@ -1,0 +1,10 @@
+tags: $:/tags/Macro/Aggregation
+title: $:/bookshelf-macros
+
+\define aggregationTag() Book
+\define systemCTag()     $:/tags/BookCategories
+\define uiTitle()        $:/config/xp/aggregation/ui/bookshelf
+\define categoryPrefix() $:/config/xp/aggregation-bookshelf/category/
+\define config-base()    $:/config/xp/aggregation-bookshelf/Tabs/Visibility/
+
+<pre><$view field="text"/></pre>

@@ -1,0 +1,23 @@
+caption: {{$:/xp/images/toolkit}} toolkit
+description: Open toolkit
+tags: $:/tags/PageControls
+title: $:/xp/ui/Buttons/toolkit
+
+\whitespace trim
+\define toolkit-button(class)
+\whitespace trim
+<$button to="$:/Toolkit" tooltip="Open toolkit" aria-label="open toolkit" class="""$(tv-config-toolbar-class)$ $class$""">
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/toolkit}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text=toolkit/>
+</span>
+</$list>
+</$button>
+\end
+
+<$list filter="[list[$:/StoryList]] +[field:title[$:/Toolkit]]" emptyMessage=<<toolkit-button>>>
+<<toolkit-button "tc-selected">>
+</$list>

@@ -1,0 +1,65 @@
+list-after: $:/core/ui/ViewTemplate/tags
+tags: $:/tags/ViewTemplate
+title: $:/xp/ui/ViewTemplate/gtd-actions
+
+\whitespace trim
+\define lingo-base() $:/language/projectify/
+
+\define easyedit-state()
+$:/state/gtd-easyedit/$(currentTiddler)$
+\end
+
+\define gtdDeleteActions()
+<$action-confirm $message="Are you sure you wish to delete this todo?">
+<$let td-baseName={{{ [<currentTiddler>prefix[$:/]removeprefix[$:/]] ~[<currentTiddler>] }}}>
+<$list filter="[<td-baseName>!is[blank]]" variable="ignore">
+<$action-deletetiddler $filter="[prefix[$:/todolist/data]suffix<td-baseName>]"/>
+</$list>
+<$list filter="$:/q1 $:/q2 $:/q3 $:/q4" variable="qList">
+<$action-listops $tiddler=<<qList>> $subfilter="-[<currentTiddler>]"/>
+</$list>
+<$action-sendmessage $message="tm-close-tiddler" param=<<currentTiddler>>/>
+<$action-deletetiddler $tiddler=<<currentTiddler>>/>
+</$let>
+</$action-confirm>
+\end
+
+\define gtdControls()
+\whitespace trim
+<div class="tc-subtitle" style="margin-top:-1em;">
+<i class='tc-tiny-gap'/>Created &#32; <$view field="created" format="date" template="DDth MMM YYYY at hh12:0mmam"/>
+</div>
+<div class="xp-gtd-controls py-todo-heading">
+{{||$:/xp/aggregation-gtd/ui/buttons/TodoDueDate}}
+{{||$:/xp/aggregation-gtd/ui/buttons/TodoQuadrant}}
+{{||$:/xp/aggregation-gtd/ui/DeleteButton}}
+{{||$:/xp/aggregation-gtd/ui/DoneButton}}
+{{||$:/xp/aggregation-gtd/ui/TodolistButton}}
+{{||$:/xp/aggregation-gtd/ui/EasyEditButton}}
+</div>
+\end
+
+<$list filter="[all[current]tag[GTD]!has[draft.of]]" variable="ignore">
+<$reveal tag="div" type="nomatch" stateTitle=<<folded-state>> text="hide">
+
+<<gtdControls>>
+
+</$reveal>
+<$reveal tag="div" type="match" stateTitle=<<easyedit-state>> text="yes">
+
+<<gtdControls>>
+
+<div
+	data-tiddler-title=<<currentTiddler>>
+	data-tags={{!!tags}}
+	class="tc-tiddler-edit-frame xp-gtd-edit-frame"
+	role="region"
+	aria-label={{$:/language/EditTemplate/Caption}}>
+<$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [<listItem>encodeuricomponent[]addprefix[tc-btn-]]">
+<$transclude tiddler="$:/core/ui/EditTemplate/body"/>
+</$set>
+</div>
+<div style="clear:both;"></div>
+
+</$reveal>
+</$list>

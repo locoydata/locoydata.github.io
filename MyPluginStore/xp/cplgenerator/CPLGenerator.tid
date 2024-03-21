@@ -1,0 +1,126 @@
+color: #bbb
+description: Generate plugin data for CPL
+icon: $:/core/images/new-button
+title: $:/CPLGenerator
+
+\whitespace trim
+
+\function cpl.title() [{$:/temp/CPLGenerator/cpl.title}]
+\function titleCondition() [<cpl.title>has[plugin-type]then[yes]] ~no
+
+\function cpl.author() [<cpl.title>get[author]]
+\function cpl.category() [{$:/temp/CPLGenerator/cpl.category}]
+\function cpl.core-version() [<cpl.title>get[core-version]]
+\function cpl.dependents() [<cpl.title>get[dependents]]
+\function cpl.description() [<cpl.title>get[description]]
+\function cpl.documentation() [{$:/temp/CPLGenerator/cpl.documentation}]
+\function cpl.name() [<cpl.title>get[name]]
+\function cpl.parent-plugin() [<cpl.title>get[parent-plugin]]
+\function cpl.plugin-type() [<cpl.title>get[plugin-type]]
+\function cpl.readme() [<cpl.title>addsuffix[/readme]get[text]]
+\function cpl.source() [<cpl.title>get[source]]
+\function cpl.tags() [{$:/temp/CPLGenerator/cpl.tags}]
+\function cpl.uri() [{$:/temp/CPLGenerator/cpl.uri}]
+
+\function creator() [<cpl.title>get[creator]]
+\function icon() [<cpl.title>get[icon]]
+\function modifier() [<cpl.title>get[modifier]]
+\function title() [<cpl.title>prefix[$:/plugins/]removeprefix[$:/plugins/]] ~[<cpl.title>removeprefix[$:/]]
+\function icon() [<cpl.title>get[icon]]
+
+\define storeTitle() $:/temp/CPLGenerator/title
+\function getTitle() [{$:/temp/CPLGenerator/title}]
+\function newTitle() [<storeTitle>has[text]then<getTitle>] ~[<title>]
+
+\define initializationButton()
+\whitespace trim
+<$button class="fb-btn btn-small tc-big-gap-left"> Initialize
+<$action-deletetiddler $filter="[prefix[$:/temp/CPLGenerator/]]"/>
+<$action-setfield $tiddler="$:/temp/CPLGenerator/cpl.category" text="Functional"/>
+<$action-setfield $tiddler="$:/temp/CPLGenerator/cpl.uri" text="https://keatonlao.github.io/tiddlywiki-xp/index.html"/>
+</$button>
+\end
+
+\define action-createtiddler()
+<$action-setfield $tiddler="$:/config/TimestampDisable" $value="yes"/>
+<$action-createtiddler $overwrite="yes"
+	$basetitle=<<newTitle>>
+	tags="$:/tags/PluginWiki"
+	cpl.author=<<cpl.author>>
+	cpl.category=<<cpl.category>>
+	cpl.core-version=<<cpl.core-version>>
+	cpl.dependents=<<cpl.dependents>>
+	cpl.description=<<cpl.description>>
+	cpl.documentation=<<cpl.documentation>>
+	cpl.name=<<cpl.name>>
+	cpl.parent-plugin=<<cpl.parent-plugin>>
+	cpl.plugin-type=<<cpl.plugin-type>>
+	cpl.readme=<<cpl.readme>>
+	cpl.source=<<cpl.source>>
+	cpl.tags=<<cpl.tags>>
+	cpl.title=<<cpl.title>>
+	cpl.uri=<<cpl.uri>>
+	creator=<<cpl.creator>>
+	icon=<<cpl.icon>>
+	modifier=<<modifier>>
+	icon=<<icon>>
+>
+<$action-deletefield $tiddler=<<createTiddler-title>> bag revision tmap.id/>
+<$action-navigate $to=<<createTiddler-title>>/>
+</$action-createtiddler>
+<$action-setfield $tiddler="$:/config/TimestampDisable" $value="no"/>
+\end
+
+\define new-tiddler()
+\whitespace trim
+<$button aria-label="new tiddler" class="fb-btn btn-small tc-tiny-gap-left">
+create-plugin-data
+<$reveal default=<<titleCondition>> type="match" text="yes">
+<$list filter="[<newTitle>has[title]]" emptyMessage=<<action-createtiddler>> variable="ignore">
+<$action-confirm $message="Are you sure you want to override the existing Tiddler? ">
+<<action-createtiddler>>
+</$action-confirm>
+</$list>
+</$reveal>
+<$reveal default=<<titleCondition>> type="nomatch" text="yes">
+<$action-sendmessage $message="tm-notify" $param="$:/language/Notifications/noPlugin"/>
+</$reveal>
+</$button>
+\end
+
+\define cancel-input-actions() <$action-deletefield $tiddler=<<editTid>> text />
+
+\define CPLGeneratorItems()
+\define config-base() $:/config/CPLGenerator/Items/Visibility/
+<span class="fb-input-panel">
+<table class="fb-input-panel">
+<tbody>
+<$list filter="[[$:/tags/CPLGenerator]tagging[]!is[draft]] :filter[lookup<config-base>!match[hide]]" variable="listItem">
+<$let
+  getCaption={{{ [<listItem>get[caption]] }}}
+  editTid={{{ [<listItem>get[caption]addprefix[$:/temp/CPLGenerator/]] }}}
+  configTid={{{ [<listItem>get[caption]addprefix[$:/config/CPLGenerator/]] }}}>
+<tr class="fb-item">
+<$transclude tiddler=<<listItem>> mode="inline"/>
+</tr>
+</$let>
+</$list>
+</tbody>
+</table>
+</span>
+\end
+
+
+<div class="fb-wrapper">
+<div class="fb-panel">
+<header class="fb-droppable-area">
+<<initializationButton>>
+</header>
+<<CPLGeneratorItems>>
+<footer>
+<span class="fb-fun-btns">
+<<new-tiddler>>
+</span>
+</footer>
+</div>
+</div>

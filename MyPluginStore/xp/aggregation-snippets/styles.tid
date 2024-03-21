@@ -1,0 +1,12 @@
+tags: $:/tags/Stylesheet
+title: $:/xp/aggregation-snippets/styles
+
+[data-tiddler-title="SNIPPETS"] {
+	background: <<colour page-background>>;
+	border: 1px solid <<colour page-background>>;
+	<<box-shadow "none">>
+}
+
+[data-tiddler-title="SNIPPETS"] .tc-titlebar {
+	background: <<colour page-background>>;
+}

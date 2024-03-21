@@ -1,0 +1,14 @@
+title: $:/config/ViewToolbarButtons/Visibility/$:/
+
+plugins/felixhayashi/tiddlymap/misc/quickConnectButton: hide
+plugins/kookma/favorites/ui/buttons/add-remove: hide
+plugins/kookma/trashbin/ui/toolbar-button: hide
+plugins/kookma/utility/ui/Buttons/DraggableLink: hide
+plugins/nico/projectify/ui/buttons/ToggleTodo: hide
+xp/ui/Buttons/aggregation-view: hide
+xp/ui/Buttons/divert: hide
+xp/ui/Buttons/gotop: hide
+xp/ui/Buttons/copy-title: hide
+xp/ui/Buttons/reading-list: hide
+xp/ui/Buttons/view-code: hide
+xp/ui/Buttons/view-subtiddler: hide

@@ -1,0 +1,34 @@
+title: $:/plugins/BTC/tiddlywiki-multi-columns/ui/KeyboardShortcuts/edit-tiddler
+tags: $:/tags/KeyboardShortcut
+key: ((edit-tiddler))
+
+\import $:/plugins/BTC/tiddlywiki-multi-columns/macros/Navigation
+
+\define not-multi-column-layout-message()
+<$set name="currentTiddler" value={{{ [[$:/HistoryList]get[current-tiddler]] }}}>
+<$list filter="[<currentTiddler>!is[draft]]" variable="ignore">
+<$navigator story="$:/StoryList" history="$:/HistoryList">
+<$action-sendmessage $message="tm-edit-tiddler" $param=<<currentTiddler>>/>
+</$navigator>
+</$list>
+</$set>
+\end
+\define not-is-draft-message()
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+\end
+\define actions()
+<$list filter="[<currentTiddler>!is[draft]]" variable="ignore">
+<$list filter="[[$:/state/story-river/full-screen/]addsuffix<currentTiddler>!is[missing]]" variable="ignore" emptyMessage=<<not-is-draft-message>>>
+<$action-setfield $tiddler="$:/state/DisableInsertAnimation" text="yes"/>
+<$action-setfield $tiddler="$:/state/DisableRemoveAnimation" text="yes"/>
+<$action-setfield $tiddler={{{ [[$:/state/story-river/full-screen/]addsuffix[Draft of ']addsuffix<currentTiddler>addsuffix[']] }}} text="yes" column=<<currentColumn>>/>
+<$list filter="[all[tiddlers]prefix[$:/state/story-river/full-screen/]] -[[$:/state/story-river/full-screen/]addsuffix[Draft of ']addsuffix<currentTiddler>addsuffix[']]" variable="fullScreenTiddler">
+<$action-deletetiddler $tiddler=<<fullScreenTiddler>>/>
+</$list>
+</$list>
+<$action-sendmessage $message="tm-edit-tiddler" $param=<<currentTiddler>>/>
+</$list>
+\end
+<$macrocall $name="btc-multi-column-navigator" actions=<<actions>> fullscreen-block="no"/>

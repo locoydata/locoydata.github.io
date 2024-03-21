@@ -1,0 +1,12 @@
+modified: 20231229044551957
+title: $:/plugins/kookma/pinboard/readme
+type: text/vnd.tiddlywiki
+
+; Pinboard
+Pinboard creates a bulletin board (pinboard, pin board, noticeboard, or notice board in British English) which is a surface intended for the posting of public messages, for example, to announce events, or provide information.
+
+;Code and demo
+For learning plugin features, syntax, tutorial and examples see the plugin demo and code pages
+
+* Demo: https://kookma.github.io/TW-Pinboard/
+* Code: https://github.com/kookma/TW-Pinboard
