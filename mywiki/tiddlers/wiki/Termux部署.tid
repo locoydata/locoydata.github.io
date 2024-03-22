@@ -1,0 +1,54 @@
+created: 20240322073752466
+modified: 20240322075531222
+tags: termux
+title: Termux部署
+tmap.id: a03753e7-85db-49f8-b210-b181e4a7728c
+type: text/vnd.tiddlywiki
+
+从F-Droid上安装Termux，不要从Google Play Store安装，Play Store上的不再维护了
+ 
+pkg update更新apt数据库
+
+pkg upgrade更新所有安装的包
+从F-Droid上安装Termux，不要从Google Play Store安装，Play Store上的不再维护了
+
+pkg update更新apt数据库
+
+pkg upgrade更新所有安装的包
+
+执行termux-setup-storage ，根据提示授予Termux对应的文件系统权限，设置完成后，Termux的Home目录下，会有一个storage文件夹，其中~/storage/shared 是我们要关注的，这个文件夹是/storage/emulate/0 的软链接
+
+安装git：pkg install git
+
+ssh-keygen -t rsa -b 4096 -C "nuuful@gmail.com"  生成公钥
+
+cat ~/.ssh/id_rsa.pub | termux-clipboard-set 复制公钥填入github后台
+
+git config --global http.proxy http://127.0.0.1:7890 calsh
+
+git config --global https.proxy http://127.0.0.1:7890
+
+git config --global user.name "locoydata"
+
+git config --global user.email "nuuful@gmail.com"
+
+git remote set-url origin git@github.com:locoydata/obvault.git
+
+克隆Obsidian Vault到Android 的obvault文件夹（注意空格）：git clone git@github.com:locoydata/obvault.git /sdcard/obvault
+
+进入目录：cd /sdcard/obvault
+
+
+打开obsidian插件Git设置,打开在此设备不可用
+
+!!使用cron运行定时任务
+
+pkg install cronie   cron可以定时执行脚本
+
+crontab -r删除当前的 cron 任务
+
+crontab -e编辑新的 cron 任务：
+
+nano /sdcard/obvault/Wiki/sync.sh编辑脚本,Ctrl+X,大写Y,回车保存
+
+bash autosync.sh手动运行autosync.sh脚本,脚本位置/sdcard/obvault/autosync.sh
