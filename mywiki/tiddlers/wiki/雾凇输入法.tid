@@ -1,0 +1,18 @@
+created: 20240322044053909
+modified: 20240322044727422
+tags: Rime windows
+title: 雾凇输入法
+tmap.id: e00c7e86-1c13-48de-8dbe-94dae03f923a
+type: text/vnd.tiddlywiki
+
+1. 打开修改此路径文件``C:\Users\Administrator\AppData\Roaming\Rime\installation.yaml``
+
+``distribution_code_name: Weasel
+distribution_name: "小狼毫"
+distribution_version: 0.15.0.0
+install_time: "Fri Mar 22 10:50:17 2024"
+installation_id: "pc-rime-ice"  改为好记的名字
+sync_dir: 'E:\OneDrive\WinApps\Backup\Rime' 用户资料备份的位置
+rime_version: 1.8.5``
+
+2. 右击输入法任务栏图标-用户资料同步
