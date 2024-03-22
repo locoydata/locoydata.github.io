@@ -1,9 +1,11 @@
 created: 20240322073752466
-modified: 20240322081410607
+modified: 20240322081920515
 tags: termux
 title: Termux部署
 tmap.id: a03753e7-85db-49f8-b210-b181e4a7728c
 type: text/vnd.tiddlywiki
+
+!! 安装依赖
 
 从F-Droid上安装Termux，不要从Google Play Store安装，Play Store上的不再维护了
  
