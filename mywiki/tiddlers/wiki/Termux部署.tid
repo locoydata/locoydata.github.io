@@ -1,5 +1,5 @@
 created: 20240322073752466
-modified: 20240322075531222
+modified: 20240322081410607
 tags: termux
 title: Termux部署
 tmap.id: a03753e7-85db-49f8-b210-b181e4a7728c
@@ -19,6 +19,8 @@ pkg upgrade更新所有安装的包
 执行termux-setup-storage ，根据提示授予Termux对应的文件系统权限，设置完成后，Termux的Home目录下，会有一个storage文件夹，其中~/storage/shared 是我们要关注的，这个文件夹是/storage/emulate/0 的软链接
 
 安装git：pkg install git
+
+!! 公钥设置
 
 ssh-keygen -t rsa -b 4096 -C "nuuful@gmail.com"  生成公钥
 
