@@ -5,7 +5,8 @@ title: 雾凇输入法
 tmap.id: e00c7e86-1c13-48de-8dbe-94dae03f923a
 type: text/vnd.tiddlywiki
 
-1. 打开修改此路径文件``C:\Users\Administrator\AppData\Roaming\Rime\installation.yaml``
+1. 打开修改此路径文件
+``C:\Users\Administrator\AppData\Roaming\Rime\installation.yaml``
 
 ``distribution_code_name: Weasel
 distribution_name: "小狼毫"
