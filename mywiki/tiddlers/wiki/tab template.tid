@@ -1,0 +1,16 @@
+created: 20240325012046860
+modified: 20240325015728857
+tags: 
+title: tab template
+tmap.id: cd2f702b-98af-4da5-a62c-5769a8738085
+type: text/vnd.tiddlywiki
+
+<$list filter="[tag[TableOfContents]sort[]limit[1]]">
+<$macrocall
+  $name="tabs"
+  tabsList="[tag[termux]]"
+  default={{!!title}}
+  class="tc-vertical"
+  template="$:/templates/tabs"
+/>
+</$list>
