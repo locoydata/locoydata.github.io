@@ -1,11 +1,15 @@
 created: 20240322020204019
-modified: 20240325015645964
+modified: 20240410065621873
 tags: termux
 title: Termux简易指令
 tmap.id: 20236bf1-d445-4fbf-ac18-26746d308dd3
 type: text/vnd.tiddlywiki
 
 简易指令
+先从onedriver中下载.bashrc到/sdcard/Download
+<<codes src:"""cd /sdcard/Download && source ~/.bashrc
+""">>
+
 
 1. 将.bashrc文件放obsidian笔记文件夹obvault中
 <<codes src:"""E:\OneDrive\文档\obvault\code\command\script\.bashrc
