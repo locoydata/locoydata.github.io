@@ -1,0 +1,39 @@
+created: 20240322020204019
+draft.of: Termux简易指令
+draft.title: Termux简易指令
+modified: 20240410064936007
+tags: termux
+title: Draft of 'Termux简易指令'
+tmap.id: 20236bf1-d445-4fbf-ac18-26746d308dd3
+type: text/vnd.tiddlywiki
+
+简易指令
+先从onedriver中下载
+
+1. 将.bashrc文件放obsidian笔记文件夹obvault中
+<<codes src:"""E:\OneDrive\文档\obvault\code\command\script\.bashrc
+""">>
+
+2. 打开Termux应用。
+
+使用以下命令进入.bashrc文件所在目录：
+
+<<codes src:"""cd /sdcard/obvault/code/command/script/
+""">>
+
+3. 编辑.bashrc文件以添加或修改指令：
+
+<<codes src:"""vim .bashrc
+""">>
+
+在打开的编辑器中，添加或修改你想要的指令。例如，你可以添加类似以下内容的别名（alias）：
+
+<<codes src:"""alias cdd='cd /sdcard/Download'
+""">>
+
+4. 保存并关闭编辑器（在Vim中按ESC键，然后输入:wq并按回车键）。
+
+5. 使用以下命令重新加载.bashrc文件以使更改生效：
+
+<<codes src:"""source .bashrc
+""">>
