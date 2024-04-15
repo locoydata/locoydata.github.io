@@ -637,12 +637,14 @@
         "title": "$:/plugins/sq/Stories/changelog"
     },
     {
-        "title": "Draft of '$:/annotation/20240323045552145'"
-    },
-    {
-        "title": "$:/annotation/20240323045552145"
-    },
-    {
-        "title": "Draft of '$:/annotation/20240323045552145'"
+        "title": "新条目",
+        "fromPageRect": {
+            "top": 629.5,
+            "left": 770,
+            "width": 378,
+            "right": 1148,
+            "bottom": 655.53125,
+            "height": 26.03125
+        }
     }
 ]

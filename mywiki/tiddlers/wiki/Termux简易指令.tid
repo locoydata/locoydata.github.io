@@ -1,10 +1,90 @@
 created: 20240322020204019
-modified: 20240410065621873
+modified: 20240415034651960
 tags: termux
 title: Termux简易指令
 tmap.id: 20236bf1-d445-4fbf-ac18-26746d308dd3
 type: text/vnd.tiddlywiki
 
+<$details summary="Termux Git设置" open="no">
+!!! ''安装依赖''
+
+从F-Droid上安装Termux，不要从Google Play Store安装，Play Store上的不再维护了
+
+!!! ''更新''
+更新apt数据库  
+<<codes src:"""pkg update
+""">>
+更新所有安装的包
+<<codes src:"""pkg upgrade
+""">>
+
+!!! ''授权''
+执行termux-setup-storage ，根据提示授予Termux对应的文件系统权限，设置完成后，Termux的Home目录下，会有一个storage文件夹，其中~/storage/shared 是我们要关注的，这个文件夹是/storage/emulate/0 的软链接
+<<codes src:"""termux-setup-storage
+""">>
+''安装git依赖''
+<<codes src:"""pkg install git
+""">>
+
+!!! ''公钥设置''
+生成公钥
+<<codes src:"""ssh-keygen -t rsa -b 4096 -C "nuuful@gmail.com"
+""">>
+复制公钥填入github后台
+<<codes src:"""cat ~/.ssh/id_rsa.pub | termux-clipboard-set
+""">> 
+
+!!! ''配置全局配置''
+calsh代理
+<<codes src:"""git config --global http.proxy http://127.0.0.1:7890
+""">> 
+<<codes src:"""git config --global https.proxy http://127.0.0.1:7890
+""">>
+
+!!! ''git同步设置''
+<<codes src:"""git config --global user.name "locoydata"
+""">>
+<<codes src:"""git config --global user.email "nuuful@gmail.com"
+""">>
+
+!!! ''关联仓库''
+<<codes src:"""git remote set-url origin git@github.com:locoydata/obvault.git
+""">>
+
+!!! ''克隆仓库''
+到Android 的obvault文件夹（注意空格）：
+<<codes src:"""git clone git@github.com:locoydata/obvault.git /sdcard/obvault
+""">>
+<<codes src:"""git clone https://github.com/locoydata/tiddlywiki.git /sdcard/tiddlywiki
+""">>
+
+!!! ''进入目录''
+<<codes src:"""cd /sdcard/obvault
+""">>
+脚本文件夹
+<<codes src:"""cd /sdcard/obvault/code/command/script/
+""">>
+
+打开obsidian插件Git设置,打开在此设备不可用
+
+!!! ''使用cron运行定时任务''
+
+pkg install cronie   cron可以定时执行脚本
+
+crontab -r删除当前的 cron 任务
+
+crontab -e编辑新的 cron 任务：
+
+nano /sdcard/obvault/Wiki/sync.sh编辑脚本,Ctrl+X,大写Y,回车保存
+
+bash autosync.sh手动运行autosync.sh脚本,脚本位置/sdcard/obvault/autosync.sh
+
+
+
+</$details>
+
+
+<$details summary="简易指令" open="no">
 简易指令
 先从onedriver中下载.bashrc到/sdcard/Download
 <<codes src:"""cd /sdcard/Download && source ~/.bashrc
@@ -38,3 +118,5 @@ type: text/vnd.tiddlywiki
 
 <<codes src:"""source .bashrc
 """>>
+
+</$details>
