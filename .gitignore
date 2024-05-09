@@ -1,0 +1,26 @@
+# Ignore Obsidian cache and workspace files
+.obsidian/plugins/text-extractor/cache/
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Ignore macOS specific files
+.DS_Store
+
+# Ignore Google Drive File Stream data
+_gsdata_
+
+# Ignore custom trash directory
+.trash
+
+# Ignore Smart Connections folder
+.smart-connections
+
+# Ignore workspace files in any directory
+**/workspace.json
+
+# Ignore specific plugin data files
+.obsidian/plugins/obsidian-hypothesis-plugin/data.json
+.obsidian/plugins/longform/data.json
+
+# Ignore Todoist token files
+.obsidian/todoist-token
