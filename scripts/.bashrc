@@ -32,7 +32,7 @@ alias gd='git diff'
 alias ghi='git hi '
 alias gss='git status'
 
-alias clone_obwiki='git clone git@github.com:locoydata/_obwiki.git /sdcard/_obwiki'
+alias clone_obflow='git clone git@github.com:locoydata/_obflow.git /sdcard/_obflow'
 alias clone_tdwiki='git clone git@github.com:locoydata/_tdwiki.git /sdcard/_tdwiki'
 
 # Install pkg
@@ -46,7 +46,7 @@ alias pms='pm2 stop all'
 alias pmd='pm2 delete all'
 
 # Tiddlywiki
-alias wp='cd $HOME/storage/shared/_obwiki'
+alias wp='cd $HOME/storage/shared/_obflow'
 alias pullp='cd $HOME/storage/shared/_wiki/MyPluginStore && echo -e "\033[0;31;1m↓ MyPluginStore\033[0m" && git pull && cd ..'
 alias pullmy='cd $HOME/storage/shared/_wiki/mywiki && echo -e "\033[0;31;1m↓ mywiki\033[0m" && git pull &&    cd tiddlers/private && echo -e "\033[0;31;1m↓ mywiki-private\033[0m" && git pull &&    cd ../journals && echo -e "\033[0;31;1m↓ mywiki-journals\033[0m" && git pull &&    cd ../images && echo -e "\033[0;31;1m↓ mywiki-images\033[0m" && git pull && cd ..'
 alias pushmy='cd $HOME/storage/shared/_wiki/mywiki && echo -e "\033[0;31;1m+ mywiki\033[0m" &&  git add . && git commit -m "Updates from phone" && git push origin master &&    cd tiddlers/private && echo -e "\033[0;31;1m++ mywiki-private\033[0m" &&  git add . && git commit -m "Updates from phone" && git push origin master &&    cd ../journals && echo -e "\033[0;31;1m++ mywiki-journals\033[0m" &&  git add . && git commit -m "Updates from phone" && git push origin master &&    cd ../images && echo -e "\033[0;31;1m++ mywiki-images\033[0m" &&  git add . && git commit -m "Updates from phone" && git push origin master && cd ..'
@@ -71,12 +71,12 @@ function tdhtm {
 
 
 function pull {
-    pull_repo "/data/data/com.termux/files/home/storage/shared/_obwiki" "_obwiki"
+    pull_repo "/data/data/com.termux/files/home/storage/shared/_obflow" "_obflow"
     pull_repo "/data/data/com.termux/files/home/storage/shared/_tdwiki" "_tdwiki"
 }
 
 function push {
-    push_repo "/data/data/com.termux/files/home/storage/shared/_obwiki" "_obwiki"
+    push_repo "/data/data/com.termux/files/home/storage/shared/_obflow" "_obflow"
     push_repo "/data/data/com.termux/files/home/storage/shared/_tdwiki" "_tdwiki"
 }
 
