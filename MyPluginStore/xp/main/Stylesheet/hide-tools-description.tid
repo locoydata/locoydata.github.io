@@ -1,8 +1,0 @@
-tags: $:/tags/XP
-title: $:/xp/Stylesheet/hide-tools-description
-
-/* REMOVE DESCRIPTIONS OF BUTTONS IN TOOLS TAB */
-
-.tc-sidebar-lists .tc-muted {
-  display: none;
-}

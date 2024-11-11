@@ -1,8 +1,0 @@
-tags: $:/tags/Macro/Aggregation
-title: $:/software-macros
-
-\define aggregationTag() Software
-\define uiTitle()        $:/config/xp/aggregation/ui/software
-\define categoryPrefix() $:/config/xp/aggregation-software/category/
-
-<pre><$view field="text"/></pre>

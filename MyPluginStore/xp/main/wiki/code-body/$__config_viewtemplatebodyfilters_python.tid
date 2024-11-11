@@ -1,5 +1,0 @@
-list-before: $:/config/ViewTemplateBodyFilters/code-body
-tags: $:/tags/ViewTemplateBodyFilter $:/CodeBodyHighlight
-title: $:/config/ViewTemplateBodyFilters/python
-
-[suffix[.py]] [tag[.py]] -[[.py]] +[then[$:/xp/ui/ViewTemplate/body/code_python]]

@@ -1,5 +1,0 @@
-caption: {{$:/plugins/flibbles/relink/language/SideBar/Missing/Caption}}
-title: $:/plugins/flibbles/relink/ui/MoreSideBar/Missing
-tags: $:/tags/MoreSideBar
-
-<$list filter={{$:/plugins/flibbles/relink/Filters/Missing!!filter}} template="$:/plugins/flibbles/relink/ui/MissingTemplate" />

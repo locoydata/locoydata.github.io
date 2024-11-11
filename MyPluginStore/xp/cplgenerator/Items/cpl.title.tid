@@ -1,9 +1,0 @@
-caption: cpl.title
-tags: $:/tags/CPLGenerator
-title: $:/CPLGenerator/Items/cpl.title
-
-<td class="fb-item-name"><<getCaption>></td>
-<td class="fb-item-input">
-{{$:/CPLGenerator/Search/Plugins}}
-</td>
-<td class="fb-item-add"></td>

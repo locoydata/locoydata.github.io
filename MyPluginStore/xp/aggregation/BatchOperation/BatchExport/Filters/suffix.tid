@@ -1,7 +1,0 @@
-caption: {{!!filter}}
-description: 标题后缀为……Ex: [suffix[.png]]
-filter: [suffix[]]
-tags: $:/tags/Filter/BatchExport
-title: $:/BatchExport/Filters/suffix
-
-{{!!filter}}

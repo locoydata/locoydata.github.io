@@ -1,7 +1,0 @@
-caption: 最近添加
-title: $:/howtos-recently-added
-
-\import $:/howtos-macros
-\define configTiddler() $:/temp/howtos/limitparam
-
-{{$:/aggregation-recently-added}}

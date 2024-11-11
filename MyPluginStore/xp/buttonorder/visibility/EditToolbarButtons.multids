@@ -1,6 +1,0 @@
-title: $:/config/EditToolbarButtons/Visibility/$:/
-
-plugins/telmiger/EditButtons/Buttons/cancel-and-close: hide
-plugins/telmiger/EditButtons/Buttons/save-and-close: hide
-plugins/telmiger/EditButtons/Buttons/save-open: hide
-xp/ui/Buttons/divert_EditToolbar: hide

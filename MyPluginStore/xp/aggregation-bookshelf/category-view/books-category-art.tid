@@ -1,6 +1,0 @@
-caption: 艺术类
-ctag: Art
-tags: $:/tags/BookCategories
-title: $:/books-category-art
-
-<<list-books "Art">>

@@ -1,4 +1,0 @@
-title: $:/plugins/kookma/shiraz/styles/colorful-sidebar-tab
-type: text/css
-
-.tc-sidebar-lists .tc-tab-buttons button.tc-tab-selected{background:0;border:0;border-bottom:solid 1px #737373;font-weight:bold;color:#db4c3f}

@@ -1,5 +1,0 @@
-filter: [all[current]tag[Howto]]
-tags: $:/tags/TagHandler
-title: $:/xp/tag-handler/items/howto
-
-$:/howtos-macros

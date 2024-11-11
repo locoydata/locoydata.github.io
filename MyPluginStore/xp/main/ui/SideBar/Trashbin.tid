@@ -1,6 +1,0 @@
-caption: {{$:/plugins/kookma/trashbin/images/recycle}}
-description: Trashbin
-tags: $:/tags/SideBar
-title: $:/xp/ui/SideBar/Trashbin
-
-{{$:/plugins/kookma/trashbin/ui/sidebar}}

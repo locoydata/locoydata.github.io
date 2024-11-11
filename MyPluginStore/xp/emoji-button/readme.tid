@@ -1,4 +1,0 @@
-title: $:/plugins/xp/emoji-button/readme
-
-A button ({{$:/xp/images/emoji}}) for inserting emojis.<br>
-Assigned shortcut: {{$:/config/shortcuts/emoji}}

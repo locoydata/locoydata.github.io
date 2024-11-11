@@ -1,3 +1,0 @@
-title: $:/bookshelf-card-template
-
-<$macrocall $name="thumbnail" link={{!!link}} icon={{!!icon}} color={{!!color}} background-color={{!!background-color}} image={{!!image}} caption={{!!caption}} width="139" height="200"/>

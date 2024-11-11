@@ -1,5 +1,0 @@
-caption: all fields
-description: Search all fields
-filter: [tag<aggregationTag>sort[]search:*<userInput>]
-tags: $:/tags/Filter/Aggregation
-title: $:/aggregation/Filter/SearchAllFields

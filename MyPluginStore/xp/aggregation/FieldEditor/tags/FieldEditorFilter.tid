@@ -1,2 +1,0 @@
-list: $:/config/FieldEditorFilters/date $:/config/FieldEditorFilters/importance $:/config/FieldEditorFilters/linkcolor $:/config/FieldEditorFilters/default
-title: $:/tags/FieldEditorFilter

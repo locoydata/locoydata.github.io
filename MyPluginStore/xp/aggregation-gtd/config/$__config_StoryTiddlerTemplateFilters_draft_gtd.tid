@@ -1,5 +1,0 @@
-list-before: $:/config/StoryTiddlerTemplateFilters/draft
-tags: $:/tags/StoryTiddlerTemplateFilter
-title: $:/config/StoryTiddlerTemplateFilters/draft_gtd
-
-[is[draft]tag[GTD]then[$:/xp/aggregation/ui/EditTemplate]]

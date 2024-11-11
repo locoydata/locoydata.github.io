@@ -1,2 +1,0 @@
-list: $:/BatchExport/Filters/tag $:/BatchExport/Filters/has:field $:/BatchExport/Filters/prefix $:/BatchExport/Filters/suffix $:/BatchExport/Filters/all+tag $:/BatchExport/Filters/plugin-type
-title: $:/tags/Filter/BatchExport

@@ -1,6 +1,0 @@
-caption: suffix
-description: filter the input titles by how they end
-tags: $:/tags/FilterBuilder
-title: $:/FilterBuilder/Items/suffix
-
-<<select-input-template>>

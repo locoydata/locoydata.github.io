@@ -1,3 +1,0 @@
-title: $:/templates/task-management-draggable
-
-<$checkbox tag="done"> <$link/></$checkbox>

@@ -1,6 +1,0 @@
-caption: 科技类
-ctag: Science
-tags: $:/tags/BookCategories
-title: $:/books-category-science
-
-<<list-books "Science">>

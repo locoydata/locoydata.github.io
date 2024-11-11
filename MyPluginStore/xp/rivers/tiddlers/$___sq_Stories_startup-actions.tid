@@ -1,4 +1,0 @@
-tags: $:/tags/StartupAction/Browser
-title: $:/_sq/Stories/startup-actions
-
-<$action-deletetiddler $tiddler="$:/_sq/Stories/Story2HistoryList"/>

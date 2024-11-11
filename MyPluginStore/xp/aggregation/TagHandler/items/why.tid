@@ -1,5 +1,0 @@
-filter: [all[current]tag[Why]]
-tags: $:/tags/TagHandler
-title: $:/xp/tag-handler/items/why
-
-$:/whys-macros

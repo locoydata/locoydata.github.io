@@ -1,6 +1,0 @@
-action-tiddler: $:/xp/diary/Actions/new-template
-caption: New Template
-color: rgba(204,204,204,0.5)
-icon: $:/core/images/new-button
-tags: $:/tags/JournalTemplate
-title: $:/xp/diary/Templates/new-template

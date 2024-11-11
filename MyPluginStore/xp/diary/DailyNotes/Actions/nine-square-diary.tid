@@ -1,7 +1,0 @@
-tags: $:/tags/Actions/Journal
-title: $:/xp/diary/Actions/nine-square-diary
-
-\whitespace trim
-<$action-listops $tiddler=<<journalTitle>> $tags="[<journalTag>]"/>
-<$action-setfield $tiddler=<<journalTitle>> class="journal"/>
-<$action-setfield $tiddler=<<journalTitle>> text={{{ [<__tid__>get[text]search-replace:g[TODAY],<now 'YYYY-0MM-0DD'>] }}}/>

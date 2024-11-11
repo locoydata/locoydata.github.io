@@ -1,6 +1,0 @@
-caption: {{$:/core/ui/Buttons/home!!caption}}
-description: {{$:/core/ui/Buttons/home!!description}}
-tags: $:/tags/QuickBar/PageControlButtons
-title: $:/xp/quickbar/Buttons/home
-
-{{$:/core/ui/Buttons/home}}

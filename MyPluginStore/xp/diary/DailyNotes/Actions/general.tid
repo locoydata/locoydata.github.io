@@ -1,7 +1,0 @@
-tags: $:/tags/Actions/Journal
-title: $:/xp/diary/Actions/general
-
-\whitespace trim
-<$action-listops $tiddler=<<journalTitle>> $tags="[<journalTag>]"/>
-<$action-setfield $tiddler=<<journalTitle>> class="journal"/>
-<$action-setfield $tiddler=<<journalTitle>> text={{{ [<__tid__>get[text]] }}}/>

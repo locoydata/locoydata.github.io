@@ -1,7 +1,0 @@
-title: $:/config/flibbles/relink/operators/
-
-filter: filter
-list: reference
-subfilter: filter
-tag: title
-title: title

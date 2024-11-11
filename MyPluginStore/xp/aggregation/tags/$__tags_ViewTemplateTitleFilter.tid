@@ -1,2 +1,0 @@
-list: $:/config/ViewTemplateTitleFilters/gtd $:/config/ViewTemplateTitleFilters/checklist $:/config/ViewTemplateTitleFilters/system $:/config/ViewTemplateTitleFilters/snippet $:/config/ViewTemplateTitleFilters/default
-title: $:/tags/ViewTemplateTitleFilter

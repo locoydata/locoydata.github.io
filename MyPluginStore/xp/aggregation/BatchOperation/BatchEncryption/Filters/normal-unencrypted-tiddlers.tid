@@ -1,4 +1,0 @@
-description: Non-encrypted normal tiddlers
-filter: [!is[system]!has[encrypted]]
-tags: $:/tags/EncryptFilter
-title: $:/BatchEncryption/Filters/normal-unencrypted-tiddlers
